@@ -12,8 +12,8 @@
     <meta http-equiv="pragma" content="no-cache"/>
     <meta name="google" value="notranslate"/>
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport" content="user-scalable=no,width=device-width">
 
     <!-- ---------------------------------------------------------------- -->
     <!-- -----------------------Blue------------------------------------- -->
@@ -100,8 +100,6 @@
         mixpanel.init("e1c3f534a66f371ed1346002ab70136c");
     </script>
     <!-- end Mixpanel -->
-    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
 
 </head>
 
@@ -139,8 +137,8 @@
                 <span ng-switch on="renderPath[ 0 ]">
                     <span ng-switch-when="auth">
                         <span ng-include="'views/auth/new.html'" ng-show="renderPath[1] =='new'"></span>
-                        <span ng-include="sweetness/www/views/auth/sent.html" ng-show="renderPath[1] =='sent'"></span>
-                        <span ng-include="sweetness/www/views/auth/sms.html" ng-show="renderPath[1] =='sms'"></span>
+                        <span ng-include="'views/auth/sent.html'" ng-show="renderPath[1] =='sent'"></span>
+                        <span ng-include="'views/auth/sms.html'" ng-show="renderPath[1] =='sms'"></span>
                     </span>
                 </span>
             </span>
