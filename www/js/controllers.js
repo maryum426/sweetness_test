@@ -3434,11 +3434,10 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
 
     // send user there sms authentication code
     $scope.newAuthSms = function () {
-        alert (windows.location);
-        console.log("--- AuthController SMS ---");
+               console.log("--- AuthController SMS ---");
         console.log("User phone: " + $scope.user.phone);
         //console.log("User fullname: " +$scope.user.fullName);
-
+		console.log(window.location);
         $log.info("--SMS Login---");
         /*$scope.safeApply(function() {
             $scope.section.loginInProgress = true;
