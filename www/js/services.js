@@ -291,9 +291,9 @@ angular.module('DataServices', ['ngResource'])
             var query = new Parse.Query("Auth");
             query.equalTo("phone", phone);
             var res = JSON.parse(query);
-            for(var i=0;i<res.length;i++){
-                console.log(i+": "+res[i]);
-            }
+            
+                console.log(res);
+           
             
             query.find({
                 success:function (r_auth) {
