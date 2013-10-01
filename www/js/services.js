@@ -290,8 +290,9 @@ angular.module('DataServices', ['ngResource'])
         var checkPhoneInDB = function (phone , cb) {
             var query = new Parse.Query("Auth");
             query.equalTo("phone", phone);
-            for(var i=0;i<query.length;i++){
-                console.log(i+": "+query[i]);
+            var res = JSON.parse(query);
+            for(var i=0;i<res.length;i++){
+                console.log(i+": "+res[i]);
             }
             
             query.find({
