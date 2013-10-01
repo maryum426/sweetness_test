@@ -50,8 +50,8 @@
     <gap:splash gap:platform="ios" height="768" src="res/screen/ios/screen-ipad-landscape.png" width="1024" />
     <gap:splash gap:platform="winphone" src="res/screen/windows-phone/screen-portrait.jpg" />
     <gap:plugin name="com.phonegap.plugins.facebookconnect">
-    <param name="APIKey" value="366407670138696" />
-    <param name="APISecret" value="11fcdd6fdb68ea93a49b7b6e7a515fa1" />
+    <param name="APP_ID" value="366407670138696" />
+    <param name="APP_NAME" value="sweet_localhost" />
     </gap:plugin>
     <access origin="*" />
 </widget>
