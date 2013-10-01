@@ -3458,7 +3458,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
 
              //TODO: Display info message
              $scope.safeApply(function () {
-                 //console.log("Redirecting to "+redirectPage + " after authlink.");
+                 console.log("Redirecting to "+redirectPage + " after authlink.");
                  //$scope.section.loginInProgress = false;
                  $location.path(redirectPage)
              });
