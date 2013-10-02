@@ -718,7 +718,15 @@ setTimeout(function () {
      xfbml      : true,  // parse XFBML,
      oauth      : true
      });*/
-    Parse.FacebookUtils.init({
+    FB.init({
+        appId      : '366407670138696', // App ID
+        channelUrl : 'http://localhost.local/sweet/bubble/channel.html', // Channel File
+        status     : true, // check login status
+        cookie     : true, // enable cookies to allow the server to access the session
+        xfbml      : true,  // parse XFBML
+        oauth      : true
+    });
+    /*Parse.FacebookUtils.init({
         //              TODO: What if user revoke Sweet app permissions
         //appId      : "548541351864725", // thankyou.sweetness.io
         //appId      : "451283941617165",
@@ -731,7 +739,7 @@ setTimeout(function () {
         xfbml:true, // parse XFBML,
         oauth:true
     });
-}, 1000);
+}, 1000);*/
 
 //window.fbAsyncInit = function() {
 //    FB.init({
