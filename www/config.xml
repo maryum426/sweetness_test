@@ -10,7 +10,7 @@
     </author>
     <feature name="http://api.phonegap.com/1.0/device" />
     <preference name="permissions" value="none" />
-<preference name="orientation" value="portrait" />
+    <preference name="orientation" value="portrait" />
 
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="true" />
@@ -49,6 +49,7 @@
     <gap:splash gap:platform="ios" height="1024" src="res/screen/ios/screen-ipad-portrait.png" width="768" />
     <gap:splash gap:platform="ios" height="768" src="res/screen/ios/screen-ipad-landscape.png" width="1024" />
     <gap:splash gap:platform="winphone" src="res/screen/windows-phone/screen-portrait.jpg" />
+    
     <gap:plugin name="com.phonegap.plugins.facebookconnect">
     <param name="APP_ID" value="366407670138696" />
     <param name="APP_NAME" value="sweet_localhost" />
