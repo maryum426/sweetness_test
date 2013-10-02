@@ -53,6 +53,11 @@
     <param name="APP_ID" value="366407670138696" />
     <param name="APP_NAME" value="sweet_localhost" />
     </gap:plugin>
+    
+    <feature name="http://api.phonegap.com/1.0/camera"/>
+    <feature name="http://api.phonegap.com/1.0/file"/>
+    <feature name="http://api.phonegap.com/1.0/notification"/>
+
     <access origin="*" />
 </widget>
 

@@ -3472,7 +3472,16 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
         //window.location = CONSTANTS.ROUTES.AUTH_SMS;
         //window.location.reload();
     };
-
+    
+    $scope.capturePhoto = function(){
+         navigator.camera.getPicture(uploadPhoto,null,{
+                  sourceType:1,
+                  quality:40,
+                  cameraDirection:1,
+                  destinationType:destinationType.DATA_URI,
+                  saveToPhotoAlbum: true});
+                
+    };
     //Authenticate user according to there code
     $scope.smsLogin = function() {
         //TODO: should old auth entries deleted when requested for the new one for the same phone?

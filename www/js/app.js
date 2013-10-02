@@ -718,13 +718,14 @@ setTimeout(function () {
      xfbml      : true,  // parse XFBML,
      oauth      : true
      });*/
+    FB.init({ appId: '366407670138696', nativeInterface: CDV.FB, useCachedDialogs: false });
     /*Parse.FacebookUtils.init({
         //              TODO: What if user revoke Sweet app permissions
         //appId      : "548541351864725", // thankyou.sweetness.io
         //appId      : "451283941617165",
         appId      : "366407670138696", // app name : sweet_localhost
         //appId		: "446791675403047", //app nmae : sweetjklabz
-        channelUrl:"http://localhost.local/sweet/alpha/channel.html", // Channel File
+        //channelUrl:"http://localhost.local/sweet/alpha/channel.html", // Channel File
         //channelUrl:"http://thankyou.sweetness.io/channel.html",
         status:true, // check login status
         cookie:true, // enable cookies to allow Parse to access the session

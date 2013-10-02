@@ -278,7 +278,7 @@
 
 <!-- JavaScript libraries -->
 
-<!--<script src="http://connect.facebook.net/en_US/all.js"></script>-->
+<script src="http://connect.facebook.net/en_US/all.js"></script>
 <script src="cdv-plugin-fb-connect.js"></script>
 <script src="facebook-js-sdk.js"></script>
 <script src="lib/angular/angular.min.js"></script>
@@ -331,6 +331,17 @@
 
     ga('create', 'UA-42651177-1', 'jklabz.com');
     ga('send', 'pageview');
+    
+    
+    document.addEventListener('deviceready', function() {
+                                      try {
+                                      
+                                      FB.init({ appId: '366407670138696', nativeInterface: CDV.FB, useCachedDialogs: false });
+                                      
+                                      } catch (e) {
+                                      
+                                      }
+                                      }, false);
 
 </script>
 
