@@ -738,8 +738,8 @@ setTimeout(function () {
         cookie:true, // enable cookies to allow Parse to access the session
         xfbml:true, // parse XFBML,
         oauth:true
-    });
-}, 1000);*/
+    */
+}, 1000)
 
 //window.fbAsyncInit = function() {
 //    FB.init({
