@@ -12,7 +12,8 @@
     <meta http-equiv="pragma" content="no-cache"/>
     <meta name="google" value="notranslate"/>
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport" content="user-scalable=no,width=device-width">
 
     <!-- ---------------------------------------------------------------- -->
     <!-- -----------------------Blue------------------------------------- -->
@@ -26,10 +27,12 @@
     <link rel="apple-touch-startup-image" href="images_blue/demo.png">
     <link rel="apple-touch-startup-image" href="images_blue/ipad-startup-image.png">
 
-    <link rel="stylesheet" href="css/blue/css/style.css" type="text/css" media="all">
+    <!--<link rel="stylesheet" href="css/blue/css/style.css" type="text/css" media="all">-->
+    <!--<link rel="stylesheet" href="css/blue/css/purple.css" type="text/css" media="all">-->
+    <link rel="stylesheet" href="{{cssStyle}}" type="text/css" media="all">
     <link rel="stylesheet" href="css/blue/css/mediaqueries.css" type="text/css" media="all">
     <link rel="stylesheet" href="css/blue/css/font-awesome.css" type="text/css" media="all">
-    
+
     <!--[if lt IE 8]>
     <link rel="stylesheet" type="text/css" href="css/blue/css/ie.css"/><![endif]-->
 
@@ -38,8 +41,10 @@
 
 
     <link href="fonts/style-typo.css" rel="stylesheet" type="text/css">
-    <!--<link href="css/responsive.css" rel="stylesheet" type="text/css">
+    <!--<link href="css/responsive.css" rel="stylesheet" type="text/css" >
     <link href="css/sweet.css" rel="stylesheet" type="text/css">-->
+    <link href="{{cssResponsive}}" rel="stylesheet" type="text/css" >
+    <link href="{{cssSweet}}" rel="stylesheet" type="text/css">
     <link rel="apple-touch-icon" href="images/touch-icon-iphone.png">
     <link rel="apple-touch-icon" sizes="114x114" href="images/touch-icon-iphone4.png">
     <link rel="apple-touch-startup-image" href="images/demo.png">
@@ -279,10 +284,13 @@
 <!-- JavaScript libraries -->
 
 <script src="http://connect.facebook.net/en_US/all.js"></script>
+<script src="cordova.js"></script>
+<script src="phonegap.js"></script>
+<!-- cordova facebook plugin -->
 <script src="cdv-plugin-fb-connect.js"></script>
+<!-- facebook js sdk -->
 <script src="facebook-js-sdk.js"></script>
 <script src="lib/angular/angular.min.js"></script>
-<script src="phonegap.js"></script>
 <!--<script src="js/jquery/jquery-1.8.3.js"></script>-->
 <script src="js/jquery/jquery-ui.min.js"></script>
 <script src="js/library/timeago.js"></script>
@@ -331,17 +339,6 @@
 
     ga('create', 'UA-42651177-1', 'jklabz.com');
     ga('send', 'pageview');
-    
-    
-    document.addEventListener('deviceready', function() {
-                                      try {
-                                      
-                                      FB.init({ appId: '366407670138696', nativeInterface: CDV.FB, useCachedDialogs: false });
-                                      
-                                      } catch (e) {
-                                      
-                                      }
-                                      }, false);
 
 </script>
 

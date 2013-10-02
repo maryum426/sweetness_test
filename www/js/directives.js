@@ -1071,8 +1071,9 @@ sweetApp.directive('sweetfileselect', function($rootScope, userService) {
 
                 var files = e.target.files || e.dataTransfer.files;
 //                scope.$apply(function(){
-                console.log(attrs.attr1);
-                console.log(scope.userid);
+                console.log("File upload attrs --> " + attrs.attr1);
+                console.log("File upload userid --> " + scope.userid);
+                console.log("Uploaded file --> " + files);
                 var file = files[0];
 
                 var serverUrl = 'https://api.parse.com/1/files/' + file.name;
@@ -1139,7 +1140,8 @@ sweetApp.directive('sweetfileselect', function($rootScope, userService) {
 //        template:"<input type='file' name='gesturePictureSelect' id='gesturePictureSelect'/>"
 
         template: '<input type="file" accept="image/*" id="capture" capture="camera" class="fileholder-btn-2" size="0" >'
-                    + "<span ng-show='showprogress' class='progress_animation'>"
+                    + "<span ng-show='showprogress' >"
+                    + "<span class='progress_animation'><img src='images/animation.gif'/> </span>"
                     //+ "<timer-loading duration='5' autostart='true'></timer-loading>"
                     //+"<br/><br/>"
                     //+"Uploading..."
@@ -1158,7 +1160,7 @@ sweetApp.directive('sweetfileselect', function($rootScope, userService) {
                 //$rootScope.userAvatar = $rootScope.userChannel.get("avatarURL");
                 //$rootScope.loadUserChannel();
 
-                //$scope.showprogress = 'false';
+                $scope.showprogress = 'false';
 
             });
 
@@ -1374,3 +1376,120 @@ sweetApp.directive('angRoundProgress', [function () {
     };
     return roundProgress;
 }]);
+
+sweetApp.directive('sweetplacefileselect', function($rootScope, userService) {
+    return {
+        restrict: 'E',
+        scope: {
+            swfile: '=',
+            userid: '=',
+            showprogress: '=',
+            setuseravatar: '&'
+        },
+        link: function (scope, element, attrs) {
+
+            element.bind("click", function() {
+                $rootScope.$broadcast("feedbackImg_upload");
+            });
+
+            element.bind("change", function(e) {
+
+                var files = e.target.files || e.dataTransfer.files;
+//                scope.$apply(function(){
+                console.log("File upload attrs --> " + attrs.attr1);
+                console.log("File upload userid --> " + scope.userid);
+                console.log("Uploaded file --> " + files);
+                var file = files[0];
+
+                var serverUrl = 'https://api.parse.com/1/files/' + file.name;
+                console.log("---sweetfileselect --- "+serverUrl);
+                scope.$apply(function(){
+                    scope.showprogress = 'true';
+                });
+                $.ajax({
+                    type: "POST",
+                    beforeSend: function(request) {
+                        request.setRequestHeader("X-Parse-Application-Id", 'h2w6h5BLXG3rak7sQ2eyEiTKRgu3UPzQcjRzIFCu');
+                        request.setRequestHeader("X-Parse-REST-API-Key", 'EexsGuVhcxUeMaJc41jOoTe620y8GS1m5KUj2ANG');
+                        request.setRequestHeader("Content-Type", file.type);
+                    },
+                    url: serverUrl,
+                    data: file,
+                    processData: false,
+                    contentType: false,
+                    success: function(data) {
+                        scope.$apply(function(){
+
+                            scope.swfile = data.url;
+                            console.log("File available at: " + scope.swfile);
+                            //var query = new Parse.Query("UserChannel");
+                            var query = new Parse.Query("PlaceSweetness");
+                            //query.equalTo("userId", scope.userid);
+                            query.equalTo("objectId", $rootScope.sweetofplaceid );
+                            console.log("---sweetfleseelect---- userId"+scope.userid);
+                            query.first({
+                                success:function(rUserChannel) {
+                                    console.log("---sweetfileselect--- "+rUserChannel.id);
+                                    rUserChannel.set("avatarURL",data.url);
+                                    rUserChannel.save(null,{
+                                        success:function(sUserChannel) {
+                                            console.log("Saved "+sUserChannel);
+                                            scope.$apply(function() {
+                                                console.log("--About to setUserAvatar--- "+sUserChannel.get("avatarURL"));
+                                                $rootScope.userAvatar = sUserChannel.get("avatarURL");
+                                                userService.setUserChannel(sUserChannel);
+                                                $rootScope.$broadcast("load_user_channel");
+                                                $rootScope.$broadcast("feedbackImg_uploaded");
+
+                                                // scope.setuseravatar(data.url);
+                                            });
+                                        }
+                                    });
+                                }
+                            });
+//                                element.visibility = false;
+//                                scope.showFileSelect = false;
+//                                scope.setSweetExpression('picture');
+                        });
+
+                    },
+                    error: function(data) {
+                        var obj = jQuery.parseJSON(data);
+                        console.log(obj.error);
+                    }
+                });
+            });
+
+//            });
+        },
+//        template:"<input type='file' name='gesturePictureSelect' id='gesturePictureSelect'/>"
+
+        template: '<input type="file" accept="image/*" id="capture" capture="camera" class="text-field" size="0" >'
+            + "<span ng-show='showprogress' >"
+            //+ "<span class='progress_animation'><img src='images/animation.gif'/> </span>"
+            //+ "<timer-loading duration='5' autostart='true'></timer-loading>"
+            //+"<br/><br/>"
+            +"Uploading..."
+            // +"<div class='progress progress-striped active'>"
+            // +"    <div class='bar' style='width: 40%;'></div>"
+            // +"  </div>"
+            // +"</div>"
+            + "</span>",
+
+        //+"</div>",
+
+        controller:function($scope, $rootScope, userService) {
+            $scope.$on("load_user_channel", function(rUserChannel) {
+                console.log("---loadUserAvatar called--- " +userService.getUserChannel().get("avatarURL"));
+                //$rootScope.userChannel.set("avatarURL",userService.getUserChannel().get("avatarURL"));
+                //$rootScope.userAvatar = $rootScope.userChannel.get("avatarURL");
+                //$rootScope.loadUserChannel();
+
+                //$scope.showprogress = 'false';
+
+            });
+
+        }
+    };
+
+});

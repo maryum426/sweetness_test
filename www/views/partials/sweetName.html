@@ -23,10 +23,13 @@ jQuery(function($) {
     <div ng-show="gustPageInfo">
         <div ng-repeat="gplace in currentPlace">
             <header class="header">
-                <div class="heading-title-holder"><span class="heading-title">{{gplace.get("placeName")}}</span> <em
-                        class="heading-sub-title">{{gplace.get("gname")}}</em></div>
+                <div class="heading-title-holder"><span class="heading-title">{{gplace.get("placeTitle")}}</span> <em
+                        class="heading-sub-title">{{gplace.get("address")}}</em></div>
             </header>
-            <div class="banner"><img src="images_blue/banner-1.png" alt="banner"></div>
+            <div class="banner">
+                <!--<img src="images_blue/banner-1.png" alt="banner">-->
+                <img src="images/main-circle-img-banner.png" alt="img" ng-src='{{ imagePlaceBanner || images/main-circle-img-banner.png}}'>
+            </div>
             <span class="thankyou-title"> Love your barista? say thank you! </span>
             <!--<span class="top-heading"> ${{gplace.get("placeName")}} </span>-->
             <!--<span class="top-heading">{{gplace.get("placeSweetName")}}</span>-->
@@ -36,6 +39,7 @@ jQuery(function($) {
             <span>{{gplace.get("placeSweetName")}}</span>-->
         </div>
         <span place="{{currentPlace}}">{{currentPlace.placeName}}</span>
+        {{placeInfoImage}}
     </div>
 </div>
 
@@ -55,13 +59,14 @@ jQuery(function($) {
             </li>
         </ul>
         <!--</section>-->
+
         <button ng-disabled="currentPagePlace == 0" ng-click="currentPagePlace=currentPagePlace-1"
-                class="previous-slide">
+                class="previous-slide" ng-hide="currentPagePlace == 0">
             Previous
         </button>
 
         <button ng-disabled="currentPagePlace >= usersInPlaces.length/pageSize - 1"
-                ng-click="currentPagePlace=currentPagePlace+1" class="next-slide">
+                ng-click="currentPagePlace=currentPagePlace+1" class="next-slide" ng-hide="currentPagePlace >= usersInPlaces.length/pageSize - 1">
             Next
         </button>
     </section>
@@ -138,9 +143,16 @@ jQuery(function($) {
         <div class="footer-Slider">
         		<input type="text" class="texfield" placeholder="enter your mobile number">
                 <ul class="submit-holder register_BUTTON_HOLDER">
-          <li><a ng-click="">Cancel</a></li>
-          <li><a ng-click="" class="send-button register-button">Login</a></li>
-        </ul>
+                  <li><a ng-click="">Cancel</a></li>
+                  <li><a ng-click="" class="send-button register-button">Login</a></li>
+                  <!--<li><a class="facebook" alt="facebook" ng-click="facebookPlaceLogin()" ng-controller="AuthController">facebook</a></li>-->
+                </ul>
+                <ul class="social-icons">
+                    <li><a class="facebook" alt="facebook" ng-click="facebookPlaceLogin()" ng-controller="AuthController">facebook</a></li>
+                    <!--<li><a class="google">google</a></li>
+                   <li><a class="linkden">linkden</a></li>
+                   <li><a class="twitter">twitter</a></li>-->
+                </ul>
         </div>
       </div>
     </div>
@@ -165,22 +177,25 @@ jQuery(function($) {
 <!-- Show the send gusture                                                                  -->
 <!-- -------------------------------------------------------------------------------------- -->
 <div class="header" ng-show="showPlaceGestureSendActionsPlace">
-    <div class="heading-title-holder"><span class="heading-title">{{userName}}</span> <em class="heading-sub-title">{{placeInfo.get('placeName')}}</em>
+    <div class="heading-title-holder"><span class="heading-title">{{userName}}</span>
+        <em class="heading-sub-title">{{currentPlace[0].get('placeTitle')}}</em>
+
     </div>
-    <!--<ul class="social-features">
-      <li><a href="#" class="profile-icon"></a></li>
-      <li><a href="#" class="cam-icon"></a></li>
-    </ul>-->
+    <ul class="social-features">
+        <!--<li><a href="#" class="profile-icon"></a></li>
+        <li><a href="#" class="cam-icon"></a></li>
+        <li><a href="#" class="home-icon"></a></li>-->
+    </ul>
 </div>
+
 <section class="main-circle-area-place_place-name" ng-show="section.sending">
     <div class="container_ROW notable">
         <div class="container">
             <div class="profile-connect">
       <span class="profile-img-main heart-big-profile">
-       <img src="images/main-circle-img.png" alt="img" ng-src='{{magicButtonImage || images/main-circle-img.png}}'
-            ng-click="navigateToInteraction()" ondrop="drop(event)" ondragover="allowDrop(event)"
-            class="circle-main-img">
-     <span class="heart-icon heart-big"><img src="images/heart-icon.png"></span>
+            <img src="images/main-circle-img.png" alt="img" ng-src='{{magicButtonImage || images/main-circle-img.png}}'
+                ng-click="sendSweetnessPlaceGesture(placeInfo)" class="circle-main-img">
+            <span class="heart-icon heart-big"><img src="images/heart-icon.png"></span>
       </span></div>
         </div>
     </div>
@@ -228,7 +243,8 @@ jQuery(function($) {
 
 <div ng-show="showmobileActions">
     <div class="header">
-        <div class="heading-title-holder"><span class="heading-title">{{userName}}</span> <em class="heading-sub-title">{{placeInfo.get('placeName')}}</em>
+        <div class="heading-title-holder"><span class="heading-title">{{userName}}</span>
+            <em class="heading-sub-title">{{currentPlace[0].get('placeTitle')}}</em>
         </div>
         <ul class="social-features">
             <!-- <li><a href="#" class="profile-icon"></a></li>-->
@@ -251,8 +267,7 @@ jQuery(function($) {
                 </span>
                 <span class="profile-img-main bot-40" style="background-color:transparent;">
                     <img src="images/main-circle-img.png" alt="img" ng-src='{{magicButtonImage || images/main-circle-img.png}}'
-                         ng-click="navigateToInteraction()" ondrop="drop(event)" ondragover="allowDrop(event)"
-                         class="circle-main-img">
+                         ng-click="feedback()" class="circle-main-img">
                     <span class="heart-icon"><img src="images/heart-icon.png"></span>
                 </span>
 
@@ -273,23 +288,29 @@ jQuery(function($) {
                              data-round-progress-inner-circle-radius="70"
                              data-round-progress-label-font="100pt Arial"
                              data-round-progress-outer-circle-background-color="#fff"
-                             data-round-progress-outer-circle-foreground-color="#14b9d6"
+                             data-round-progress-outer-circle-foreground-color="#672971"
                              data-round-progress-inner-circle-color="#fff"
                              data-round-progress-label-color="#fff"></div>
                     </div>
                 </div>
 
-                <div class="{{showprogressline}} strip-top-line">
+                <!--<div class="{{showprogressline}} strip-top-line">
                     <span class="profile-attach">
-                        <!--<img src="images/profile-pic-2.png" alt="Profile Picture">-->
+                        &lt;!&ndash;<img src="images/profile-pic-2.png" alt="Profile Picture">&ndash;&gt;
                         <img ng-show='!userAvatar' ng-src="images/bg-capture2.png" />
 
-                        <img  ng-show='userAvatar' ng-src="http://fast-bayou-8907.herokuapp.com/convert?resize=160x160&source={{userAvatar}}"/>
+                        &lt;!&ndash;<img  ng-show='userAvatar' ng-src="http://fast-bayou-8907.herokuapp.com/convert?resize=200x200&source={{userAvatar}}"/>&ndash;&gt;
+                        <img  ng-show='userAvatar' ng-src="{{userAvatar}}"/>
 
                         <sweetfileselect align="center" showprogress="util.showProgress" swfile="user.avatarUrl" attr1="50" >
                         </sweetfileselect>
+
                     </span>
-                </div>
+                </div>-->
+
+                <audio id="bellSound" ng-show='playBell'>
+                    <source src="images/bell-ringing-03.mp3" type="audio/mpeg">
+                </audio>
 
                 <form name="mobileForm" onkeypress="return event.keyCode != 13;">
                     <fieldset>
@@ -369,7 +390,7 @@ jQuery(function($) {
                            ng-class="{enable : !mobileForm.mnumber.$invalid , disable : mobileForm.mnumber.$invalid && !mobileForm.mnumber.$valid }"
                            ng-click="newAuthPlace()" class="send-button">Send</a></li>-->
                     <li class="feedback-btn">
-                        <a ng-click="feedback()" class="send-button">We'd love to read your feedback.</a></li>
+                        <a ng-click="feedback()" class="send-button">Please write to us with your feedback</a></li>
                 </ul>
                 
                 <!-- -----------------------------Feedback form ------------------------------------------- -->
@@ -389,7 +410,7 @@ jQuery(function($) {
                         </fieldset>
                     </form>
                     <ul class="submit-holder">
-                        <li><a href="#" ng-click="newAuthPlaceCancel()">Cancel</a></li>
+                        <li><a ng-click="newAuthPlaceCancel()">Cancel</a></li>
                         <li>
                             <!--<a ng-disabled="mobileForm.mnumber.$dirty && mobileForm.mnumber.$invalid && !mobileForm.mnumber.$valid"
                            ng-class="{enable : !mobileForm.mnumber.$invalid , disable : mobileForm.mnumber.$invalid && !mobileForm.mnumber.$valid }"

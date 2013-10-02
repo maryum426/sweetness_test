@@ -4,7 +4,7 @@
 */
 header('Content-type: text/xml');
 echo '<?xml version="1.0" encoding="UTF-8"?>';
-echo '<Response><Sms>Thanks for your comment tip! - Team Sweetness </Sms></Response>'; //Place the desired response (if any) here
+echo '<Response><Sms>Thanks for your comment tip!'. \n .' - Team Sweetness </Sms></Response>'; //Place the desired response (if any) here
 /**
 * This section actually sends the email.
 */

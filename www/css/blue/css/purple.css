@@ -81,7 +81,7 @@ textarea {
 .wrapper {
 	max-width: 770px;
 	margin: 0 auto;
-	background-color: #14b9d6;
+	background-color: #672971;
 	position: relative;
 }
 .no-bg-color { background-color: transparent; }
@@ -200,11 +200,15 @@ textarea {
 	color: #fff;
 	font-size: 25px;
 	margin-bottom: 20px;
+	padding:20px 0;
+	width:90%;
+	margin:0 auto;
+	background-color:#ed145b;
 }
 /*20-Aug-page-2-css-Start*/
 .header {
 	padding: 10px 25px;
-	background-color: #14b9d6;
+	background-color: #672971;
 	color: #fff;
 }
 .header:after {
@@ -258,7 +262,7 @@ textarea {
 .social-features li a.home-icon {
     background: url(../images/home-icon.png) no-repeat;
     width: 54px;
-    height: 53px;
+    height: 54px;
 }
 .social-features li a.home-icon:hover { background: url(../images/home-icon.png) no-repeat; }
 .social-features li a.home-icon.active { background: url(../images/home-icon.png) no-repeat; }
@@ -270,7 +274,8 @@ textarea {
 .profile-connect-bottom { padding: 0 81px 22px; }
 .profile-connect-other {
 	overflow: hidden;
-	padding: 102px 25px 77px;
+	/*padding: 102px 25px 77px;*/
+    padding: 240px 25px 187px;
 }
 .profile-img-main {
 	display: block;
@@ -278,7 +283,7 @@ textarea {
 	padding: 12px;
 	width: 247px;
 	margin: 0 auto;
-	background-color: #14b9d6;
+	background-color: #672971;
 	border-radius: 50%;
 	-webkit-border-radius: 50%;
 	position: relative;
@@ -313,7 +318,7 @@ textarea {
 	height: 156px;
 	padding: 13px;
 	width: 156px;
-	background-color: #14b9d6;
+	background-color: #672971;
 	margin: 0 auto;
 	border-radius: 50%;
 	-webkit-border-radius: 50%;
@@ -392,7 +397,7 @@ textarea {
 	text-align: center;
 	padding: 26px 0;
 }
-.submit-holder li a.send-button { background-color: #f24e22; }
+.submit-holder li a.send-button { background-color: #ed145b; }
 .submit-holder li a:hover { text-decoration: none; }
 .banner {
 	padding: 0;
@@ -408,7 +413,7 @@ textarea {
 	color: #fff;
 	font-size: 31px;
 	padding: 24px 10px;
-	background-color: #14b9d6;
+	background-color: #672971;
 	text-align: center;
 }
 .social-connection {
@@ -430,7 +435,7 @@ textarea {
 	display: block;
 	margin-bottom: 10px;
 	padding: 12px;
-	background-color: #14b9d6;
+	background-color: #672971;
 	border-radius: 50%;
 	-webkit-border-radius: 50%;
 	cursor: pointer;
@@ -1158,7 +1163,7 @@ ul.rating { display: inline-block; }
     font-size: 34px;
     font-style: italic;
     text-align: center;
-    margin-bottom: 44px;
+    margin-top: 44px;
 }
 /*NEW-SCREEN-CSS-START*/
 .container { position: relative; }
@@ -1166,7 +1171,7 @@ ul.rating { display: inline-block; }
 	position: absolute;
 	left: 0;
 	top: 148px;
-	background-color: #14B9D6;
+	background-color: #672971;
 	/* background-image: url("../images/arrow-icon-left.png");*/
 	background-image: url(../images/left-arrow.png);
 	background-position: 50% 50%;
@@ -1182,7 +1187,7 @@ ul.rating { display: inline-block; }
 	position: absolute;
 	right: 0;
 	top: 148px;
-	background-color: #14B9D6;
+	background-color: #672971;
 	/*background-image: url("../images/arrow-icon-right.png");*/
 	background-image: url("../images/right-arrow.png");
 	background-position: 50% 50%;
@@ -1251,15 +1256,6 @@ ul.rating { display: inline-block; }
     cursor:pointer;
     opacity:0;
 }
-
-#avatar_canvas {
-    width: 850px;
-    height: 490px;
-    border: 1px solid #333335;
-    margin-bottom: 20px;
-    overflow: hidden;
-}
-
 /*NEW-SCREEN-CSS-END*/
 .inputfile-holder-2 {
 	max-width: 55px;
@@ -1380,11 +1376,11 @@ ul.rating { display: inline-block; }
 }
 .submit-holder .feedback-btn:first-child { width: auto; }
 .submit-holder .feedback-btn a {
-	font-size: 20px;
+	font-size: 34px;
 	padding: 18px 0;
 }
 .feedbackFACEBOOK {
-	background-color: #14B9D6;
+	background-color: #672971;
 	margin: 70px auto 0;
 	max-width: 614px;
 	padding: 20px;
@@ -1409,7 +1405,7 @@ ul.rating { display: inline-block; }
 }
 /*page3-CSS-End*/
 .login-btn{
-	background:#f24e22;
+	background:#ed145b;
 	display:block;
 	margin: 30px auto 0;
 	width:auto;
@@ -1439,11 +1435,11 @@ ul.rating { display: inline-block; }
 	clear:both;
 }
 .footer-Slider{
-	background-color:#f24e22;	
+	background-color:#ed145b;	
     padding: 45px 80px;
 }
 .detail {
-	background: url(../images/up-down-btn.png) no-repeat left top;
+	background: url(../images/purple-up-down-btn.png) no-repeat left top;
 	float: right;
 	height: 72px;
 	width: 80px;
@@ -1469,6 +1465,6 @@ ul.rating { display: inline-block; }
     padding: 17px 0;
 }
 .footer-Slider .submit-holder li a.send-button {
-    background-color: #14B9D6;
+    background-color: #672971;
 }
 /*Footer-Slide-Css-End*/

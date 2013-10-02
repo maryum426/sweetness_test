@@ -183,9 +183,16 @@ body, button, input, select, textarea {
 }
 #map_canvas {
 	width: 850px;
-	height: 725px;
+	height: 490px;
 	border: 1px solid #333335;
 	margin-bottom: 20px;
+}
+#avatar_canvas {
+    width: 850px;
+    height: 490px;
+    border: 1px solid #333335;
+    margin-bottom: 20px;
+    overflow: hidden;
 }
 /*.image-gallery{ height:153px; height:233px;  -webkit-border-radius: 111px; -moz-border-radius: 111px; border-radius: 111px; overflow:visible; }*/
 .image-gallery {

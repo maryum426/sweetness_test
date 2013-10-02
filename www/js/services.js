@@ -290,11 +290,10 @@ angular.module('DataServices', ['ngResource'])
         var checkPhoneInDB = function (phone , cb) {
             var query = new Parse.Query("Auth");
             query.equalTo("phone", phone);
-           
             query.find({
                 success:function (r_auth) {
                     if (r_auth.length > 0) {
-                        cb(r_auth[0]);
+                        cb(r_auth[0])
                     }
                     else {
                        cb(null);
@@ -1470,12 +1469,15 @@ angular.module('DataServices', ['ngResource'])
             saveSweetPlaceParse:function (place, cb) {
                 var placeExist = false;
                 console.log("saveSweet: " + place.placeName);
+                console.log("saveSweet: " + place.placeTitle);
 
                 var SweetPlace = Parse.Object.extend("SweetPlace");
                 var pSweet = new SweetPlace();
 
                 pSweet.set("placeCreatorId", userService.currentUser().id);
                 pSweet.set("placeName", place.placeName);
+                pSweet.set("placeTitle", place.placeTitle);
+                pSweet.set("placePhoto", place.placePhoto);
                 pSweet.set("placeSweetName", place.placeSweetName);
                 pSweet.set("placeDesc", place.placeDesc);
                 pSweet.set("placeURL", place.placeURL);
@@ -1621,6 +1623,33 @@ angular.module('DataServices', ['ngResource'])
                 //query.equalTo("userID",userService.currentUser().id);
                 query.equalTo("userID", userid);
                 query.equalTo("joinReq", "1");
+                query.find({
+                    success:function (results) {
+                        console.log("Successfully retrieved " + results.length);
+                        /*for(var i=0; i< results.length; i++) {
+                         console.log("Successfully retrieved " +  results[i].get("placeName"));
+                         placeSweetsArray.push(results[i]);
+                         }
+                         cb(placeSweetsArray);*/
+                        cb(results);
+                    },
+                    error:function (error) {
+                        console.log("Error: " + error.code + " " + error.message);
+                    }
+                });
+            },
+            checkUserPlaces:function (userid,placename, cb) {
+
+                var placeUserArray = [];
+                var SweetPlaceUsers = Parse.Object.extend("SweetPlaceUsers");
+                var query = new Parse.Query("SweetPlaceUsers");
+
+                console.log("Successfully retrieved userid" + userid);
+
+                //query.equalTo("userID",userService.currentUser().id);
+                query.equalTo("userID", userid);
+                query.equalTo("joinReq", "1");
+                query.equalTo("placeName", placename);
                 query.find({
                     success:function (results) {
                         console.log("Successfully retrieved " + results.length);
@@ -2090,6 +2119,36 @@ angular.module('DataServices', ['ngResource'])
                         if (success) cb(true); else cb(false);
                     });
                 }
+            },
+            sendCommentEmail:function (emailData, cb) {
+
+                var newLine = "<br>";
+
+                var fromEmail = emailData.fromEmail;
+                var receiverEmail = emailData.receiverEmail;
+                var subject = emailData.subject;
+                var m_phone = "Hello "
+                            + newLine
+                            + "A customer just wrote to you: "
+                            + newLine
+                            + emailData.comment
+                            + newLine
+                            + emailData.username
+                            + '--'
+                            + emailData.mobile
+                            + newLine
+                            + "- Team Sweetness ";
+
+                utilService.sendEmailPP(fromEmail,receiverEmail, subject, m_phone, function (success) {
+                    if (success) {
+                        console.log("Email send successfuly");
+                        cb(true);
+                    }
+                    else {
+                        console.log("Email having some problem");
+                        cb(false);
+                    }
+                });
             },
 
             //                TODO: parse query limit is 100 by default query.limit(100) - 1000 max

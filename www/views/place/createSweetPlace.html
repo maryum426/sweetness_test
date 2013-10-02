@@ -31,12 +31,20 @@
         <div class="col07">
             <input name="placename" class="text-field" placeholder="Name your place" type="text" ng-model="place.name"
                    ng-trim='false' ng-pattern="/^[\S]*$/" required/>
-        <span class="input-help" ng-show="placeForm.placename.required">
-            <h4>Required!</h4>
-        </span>
-        <span class="input-help" ng-show="placeForm.placename.$error.pattern">
-            <h4>No space allowed.</h4>
-        </span>
+            <span class="input-help" ng-show="placeForm.placename.required">
+                <h4>Required!</h4>
+            </span>
+            <span class="input-help" ng-show="placeForm.placename.$error.pattern">
+                <h4>No space allowed.</h4>
+            </span>
+        </div>
+
+        <div class="col07">
+            <input name="placetitle" class="text-field" placeholder="Place title" type="text" ng-model="place.title"
+                   ng-trim='false' required/>
+            <span class="input-help" ng-show="placeForm.placetitle.required">
+                <h4>Required!</h4>
+            </span>
         </div>
 
         <div class="col07">
@@ -44,8 +52,14 @@
                    ng-model="place.sweetname" required>
         </div>
 
+        <div class="col07">
+            <sweetplacefileselect align="center" showprogress="util.showProgress" swfile="user.avatarUrl" attr1="50" >
+            </sweetplacefileselect>
+        </div>
+
         <!--<map id="map_canvas"></map>-->
-        <div id="map_canvas" class="gmap"></div>
+        <img  id="avatar_canvas" ng-show='userAvatar' ng-src="{{userAvatar}}"/>
+        <div id="map_canvas" class="gmap" ng-show='!userAvatar'></div>
 
         <div class="col07">
             <!--<input name="" class="create-place-btn-gmail create-place-btn" type="button" value="Create This Place" ng-click=creatPlaceParse(place) />-->
@@ -55,6 +69,7 @@
                    ng-class="{enable : !placeForm.placename.$invalid || !placeForm.placeaddress.$invalid, disable : placeForm.placename.$invalid || placeForm.placeaddress.$invalid}"
                    ng-click="creatPlaceParse(place)"/>
         </div>
+
     </form>
     <div class="col02-placeMsg" ng-show="placeMsg">
         <span>Place already exist.</span>

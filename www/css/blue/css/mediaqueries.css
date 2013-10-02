@@ -10,7 +10,6 @@
 	font-size: 25px;
 	padding: 15px 0;
 }
-.banner img { height: auto; }
 .services-holder li { margin: 10px 15px; }
 .profile-connect_TWO { margin-top: 0; }
 .footer_GROUP_TWO { margin-top: 170px; }
@@ -34,6 +33,7 @@
 	margin-right: 10px;
 	width: 126px;
 }
+.banner img { height: auto; }
 .rating li { font-size: 90px; }
 .no_TOP_MARGIN { margin-top: 0; }
 .heart-big-profile {
