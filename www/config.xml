@@ -51,7 +51,7 @@
     <gap:splash gap:platform="winphone" src="res/screen/windows-phone/screen-portrait.jpg" />
     
     <gap:plugin name="com.phonegap.plugins.facebookconnect">
-    <param name="APP_ID" value="366407670138696" />
+    <param name="APP_ID" value="366407670138696"/>
     <param name="APP_NAME" value="sweet_localhost" />
     </gap:plugin>
     
