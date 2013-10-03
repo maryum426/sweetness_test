@@ -286,10 +286,11 @@
 <script src="http://connect.facebook.net/en_US/all.js"></script>
 
 <script src="phonegap.js"></script>
+<script src="cordova.js"></script>
 <!-- cordova facebook plugin -->
 <script src="cdv-plugin-fb-connect.js"></script>
 <!-- facebook js sdk -->
-<script src="facebook-js-sdk.js"></script>
+<script src="facebook_js_sdk.js"></script>
 <script src="lib/angular/angular.min.js"></script>
 <!--<script src="js/jquery/jquery-1.8.3.js"></script>-->
 <script src="js/jquery/jquery-ui.min.js"></script>
@@ -340,6 +341,25 @@
     ga('create', 'UA-42651177-1', 'jklabz.com');
     ga('send', 'pageview');
 
+
+    document.addEventListener('deviceready', function() {
+            alert('deviceready');
+              FB.init({
+                  appId: '366407670138696',
+                  nativeInterface: CDV.FB,
+                  status     : true, // check login status
+                  //cookie     : true, // enable cookies to allow the server to access the session
+                 // xfbml: true,
+                  useCachedDialogs: false
+              });
+              
+   
+              FB.Event.subscribe('auth.statusChange', handleStatusChange);
+              FB.getLoginStatus(handleStatusChange);
+            alert('FB.getLoginStatus');
+          } 
+         );
+             
 </script>
 
 </body>

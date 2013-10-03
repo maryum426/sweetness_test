@@ -46,7 +46,30 @@
 </div>
 
 
-
+<script src="cordova.js"></script>
+<!-- cordova facebook plugin -->
+<script src="cdv-plugin-fb-connect.js"></script>
+<!-- facebook js sdk -->
+<script src="facebook_js_sdk.js"></script>
+L<script>
+ document.addEventListener('deviceready', function() {
+            alert('deviceready');
+              FB.init({
+                  appId: '366407670138696',
+                  nativeInterface: CDV.FB,
+                  status     : true, // check login status
+                  //cookie     : true, // enable cookies to allow the server to access the session
+                 // xfbml: true,
+                  useCachedDialogs: false
+              });
+              
+   
+              FB.Event.subscribe('auth.statusChange', handleStatusChange);
+              FB.getLoginStatus(handleStatusChange);
+            alert('FB.getLoginStatus');
+          } 
+         );
+             </script>
 <!--<div class="wrapper" ng-controller="AuthController">
 
     <div class="logo">
