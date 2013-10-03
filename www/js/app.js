@@ -725,7 +725,7 @@ setTimeout(function () {
         //appId      : "451283941617165",
         appId      : "366407670138696", // app name : sweet_localhost
         //appId		: "446791675403047", //app nmae : sweetjklabz
-        channelUrl:"../channel.html", // Channel File
+        channelUrl:"www/channel.html", // Channel File
         //channelUrl:"http://thankyou.sweetness.io/channel.html",
         status:true, // check login status
         cookie:true, // enable cookies to allow Parse to access the session
