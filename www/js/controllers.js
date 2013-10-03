@@ -3607,7 +3607,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
             $scope.section.loginInProgress = true;
             $scope.section.loginInProgressMsg = CONSTANTS.LOGIN_IN_PROGRESS;
         });
-        FB.login(null, {scope: 'email'});
+        FB.login(null, {scope: 'email,publish_actions'});
         var myExpDate = new Date();
         myExpDate.setMonth( myExpDate.getMonth( ) + 2 );
         myExpDate = myExpDate.toISOString();
@@ -3619,6 +3619,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
         var facebookAuthData;
         function handleStatusChange(response) {
         if (response.authResponse) {
+             console.log(response);
           facebookAuthData = {
           "id": session.authResponse.userId+"",
           "access_token": session.authResponse.accessToken,
@@ -3634,7 +3635,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
 
         
 
-        Parse.FacebookUtils.logIn(facebookAuthData, {
+        /*Parse.FacebookUtils.logIn(facebookAuthData, {
             success:function (user) {
                 if (!user.existed()) {
                     console.log("User signed up and logged in through Facebook!");
@@ -3644,13 +3645,13 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                 facebookService.getExtendedToken(function (success) {
                     console.log("---Extended Token--- " + success);
                 });
-//                    cb(user);
+//                    cb(user);*/
 
                 /*console.log("UserInfo -->" + _.pairs(user));
                  console.log("UserInfo ID -->" + user.id);
                  console.log("UserInfo FBID" + user.get("authData")["facebook"]["id"]);*/
 
-                facebookService.updateUserInfo(user, function (rUser, rUserChannel) {
+                /*facebookService.updateUserInfo(user, function (rUser, rUserChannel) {
                     $scope.safeApply(function () {
                         $scope.section.loginInProgress = false;
                         if (rUserChannel)
@@ -3675,7 +3676,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                 console.log(error.message);
 //                    cb(null);
             }
-        });
+        });*/
 
 //        $log.info("--Facebook Login---");
 //        $scope.safeApply(function() {
