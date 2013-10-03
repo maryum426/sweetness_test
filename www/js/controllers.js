@@ -3607,7 +3607,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
             $scope.section.loginInProgress = true;
             $scope.section.loginInProgressMsg = CONSTANTS.LOGIN_IN_PROGRESS;
         });
-        FB.login(null, {scope: 'email,publish_actions'});
+        
         var myExpDate = new Date();
         myExpDate.setMonth( myExpDate.getMonth( ) + 2 );
         myExpDate = myExpDate.toISOString();
@@ -3616,7 +3616,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
 
       
         
-        var facebookAuthData;
+        /*var facebookAuthData;
         function handleStatusChange(response) {
         if (response.authResponse) {
              console.log(response);
@@ -3631,27 +3631,28 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
           console.log(response);
           
         }
-      }
+      }*/
+        
 
         
 
-        /*Parse.FacebookUtils.logIn(facebookAuthData, {
+        Parse.FacebookUtils.logIn("publish_actions,email", {
             success:function (user) {
                 if (!user.existed()) {
-                    console.log("User signed up and logged in through Facebook!");
+                    alert("User signed up and logged in through Facebook!");
                 } else {
-                    console.log("User logged in through Facebook!");
+                    alert("User logged in through Facebook!");
                 }
                 facebookService.getExtendedToken(function (success) {
-                    console.log("---Extended Token--- " + success);
+                    alert("---Extended Token--- " + success);
                 });
-//                    cb(user);*/
+//                    cb(user);
 
                 /*console.log("UserInfo -->" + _.pairs(user));
                  console.log("UserInfo ID -->" + user.id);
                  console.log("UserInfo FBID" + user.get("authData")["facebook"]["id"]);*/
 
-                /*facebookService.updateUserInfo(user, function (rUser, rUserChannel) {
+                facebookService.updateUserInfo(user, function (rUser, rUserChannel) {
                     $scope.safeApply(function () {
                         $scope.section.loginInProgress = false;
                         if (rUserChannel)
@@ -3672,11 +3673,11 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
 
             },
             error:function (user, error) {
-                console.log("User cancelled the Facebook login or did not fully authorize.");
-                console.log(error.message);
+                alert("User cancelled the Facebook login or did not fully authorize.");
+                alert(error.message);
 //                    cb(null);
             }
-        });*/
+        });
 
 //        $log.info("--Facebook Login---");
 //        $scope.safeApply(function() {

@@ -719,21 +719,20 @@ setTimeout(function () {
      oauth      : true
      });*/
    
-    /*Parse.FacebookUtils.init({
+    Parse.FacebookUtils.init({
         //              TODO: What if user revoke Sweet app permissions
         //appId      : "548541351864725", // thankyou.sweetness.io
         //appId      : "451283941617165",
         appId      : "366407670138696", // app name : sweet_localhost
         //appId		: "446791675403047", //app nmae : sweetjklabz
-        channelUrl:"http://localhost.local/sweet/alpha/channel.html", // Channel File
+        channelUrl:"../channel.html", // Channel File
         //channelUrl:"http://thankyou.sweetness.io/channel.html",
         status:true, // check login status
         cookie:true, // enable cookies to allow Parse to access the session
         xfbml:true, // parse XFBML,
         oauth:true
-    })*/
+    })
 }, 1000);
-
 //window.fbAsyncInit = function() {
 //    FB.init({
 //        appId      : '610836262276654', // App ID
