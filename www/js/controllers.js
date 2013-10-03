@@ -3607,35 +3607,10 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
             $scope.section.loginInProgress = true;
             $scope.section.loginInProgressMsg = CONSTANTS.LOGIN_IN_PROGRESS;
         });
+        //FB.Event.subscribe('auth.statusChange', handleStatusChange);
+              //FB.getLoginStatus(handleStatusChange);
+            //alert('FB.getLoginStatus');
         
-        var myExpDate = new Date();
-        myExpDate.setMonth( myExpDate.getMonth( ) + 2 );
-        myExpDate = myExpDate.toISOString();
-
-       
-
-      
-        
-        /*var facebookAuthData;
-        function handleStatusChange(response) {
-        if (response.authResponse) {
-             console.log(response);
-          facebookAuthData = {
-          "id": session.authResponse.userId+"",
-          "access_token": session.authResponse.accessToken,
-          "expiration_date": myExpDate 
-        }
-          
-         
-        } else {
-          console.log(response);
-          
-        }
-      }*/
-        
-
-        
-
         Parse.FacebookUtils.logIn("publish_actions,email", {
             success:function (user) {
                 if (!user.existed()) {
@@ -3663,10 +3638,10 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
 
                 // Get user places
                 sweetService.getUserPlaces(user.get("authData")["facebook"]["id"], function (placeUserSweets) {
-                    console.log("Successfully retrieved placeUserSweets " + placeUserSweets.length + " scores.");
+                    alert("Successfully retrieved placeUserSweets " + placeUserSweets.length + " scores.");
                     $scope.safeApply(function () {
                         $rootScope.listPlaces = placeUserSweets;
-                        console.log("Successfully retrieved listPlaces " + $rootScope.listPlaces.length + " scores.");
+                        alert("Successfully retrieved listPlaces " + $rootScope.listPlaces.length + " scores.");
                         $location.path(CONSTANTS.ROUTES.SWEET_HOME_PLACE);
                     });
                 });
@@ -3693,6 +3668,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
 //            });
 //        });
     };
+
 
     $scope.facebookLink = function () {
 //        $log.info("--Facebook Link---");
