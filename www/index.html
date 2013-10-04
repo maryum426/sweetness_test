@@ -55,7 +55,7 @@
 
     <script src="cdv-plugin-fb-connect.js"></script>
 
-    <script src="facebook_js_sdk.js"></script>
+    <script src="facebook-js-sdk.js"></script>
     <!--&lt;!&ndash; Le HTML5 shim, for IE6-8 support of HTML5 elements &ndash;&gt;-->
     <!--&lt;!&ndash;[if lt IE 9]>-->
     <!--<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>-->
@@ -69,8 +69,9 @@
         document.addEventListener('deviceready', function() {
                                       try {
                                       alert('Device is ready! Make sure you set your app_id below this alert.');
+                                      window.fbAsyncInit = function () {
                                       FB.init({ appId: '366407670138696', nativeInterface: CDV.FB, useCachedDialogs: false });
-                                      
+                                      }
                                       } catch (e) {
                                       alert("Hello: "+e);
                                       }
