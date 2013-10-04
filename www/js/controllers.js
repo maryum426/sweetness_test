@@ -3628,8 +3628,10 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
           "id": session.authResponse.userId+"",
           "access_token": session.authResponse.accessToken,
           "expiration_date": myExpDate 
-        }
-
+        };
+        alert(session.authResponse.userId);
+        alert(session.authResponse.accessToken);
+        
         /*Parse.FacebookUtils.logIn(facebookAuthData,"publish_actions,email", {
             success:function (user) {
                 if (!user.existed()) {

@@ -1,3 +1,7 @@
+<script src="cordova.js"></script>
+<script src="cdv-plugin-fb-connect.js"></script>
+
+<script src="facebook-js-sdk.js"></script>
 <div class="wrapper" ng-controller="AuthController">
     <div class="container_ROW">
         <a href="#" class="logo"><img src="images/logo.png" alt="sweet"></a>
@@ -22,13 +26,13 @@
                 <section ng-hide="section.loginInProgress">
                     <span class="connect-title">Connect with ...</span>
                     <ul class="social-icons">
-                        <li><a class="facebook" alt="facebook" ng-click="facebookLogin()">facebook</a></li>
+                        <li><a class="facebook"  onclick="facebookLogin();">facebook</a></li>
                         <!--<li><a class="google">google</a></li>
                         <li><a class="linkden">linkden</a></li>
                         <li><a class="twitter">twitter</a></li>-->
                     </ul>
                     <span class="enterprice-title">Login here for enterprise account</span>
-                    <div id="data">loading</div>
+                    <div id="data">loading....</div>
                 </section>
             </div>
         </div>
@@ -45,13 +49,37 @@
         <!--</p>-->
     </section>
 </div>
+<script>
+    function facebookLogin(){
+        FB.login(
+                     function(response) {
+                       if (response.session) {
+                         alert('logged in');
+                       } 
+                       else {
+                         alert('not logged in');
+                       }
+                       document.getElementById('data').innerHTML = JSON.stringify(response);
+                     }, { scope: "email,publish_actions" }
+                         );
+        
+        var myExpDate = new Date();
+        myExpDate.setMonth( myExpDate.getMonth( ) + 2 );
+        myExpDate = myExpDate.toISOString();
+
+       var facebookAuthData = {
+          "id": session.authResponse.userId+"",
+          "access_token": session.authResponse.accessToken,
+          "expiration_date": myExpDate 
+        };
+        alert(session.authResponse.userId);
+        alert(session.authResponse.accessToken);
+    }
+</script>
 
 
 
 
-<script src="cdv-plugin-fb-connect.js"></script>
-
-<script src="facebook_js_sdk.js"></script>
 <!--<div class="wrapper" ng-controller="AuthController">
 
     <div class="logo">
