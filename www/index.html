@@ -61,6 +61,17 @@
 
     <!-- start Mixpanel -->
     <script type="text/javascript">
+        
+        document.addEventListener('deviceready', function() {
+                                      try {
+                                      alert('Device is ready! Make sure you set your app_id below this alert.');
+                                      FB.init({ appId: '366407670138696', nativeInterface: CDV.FB, useCachedDialogs: false });
+                                      document.getElementById('data').innerHTML = "";
+                                      } catch (e) {
+                                      alert(e);
+                                      }
+                                      }, false);
+                                      
         (function (e, b) {
             if (!b.__SV) {
                 var a, f, i, g;
@@ -285,13 +296,18 @@
 
 <script src="http://connect.facebook.net/en_US/all.js"></script>
 
-<script src="phonegap.js"></script>
+<script src="cordova.js"></script>
+
+<script src="cdv-plugin-fb-connect.js"></script>
+
+<script src="facebook_js_sdk.js"></script>
 
 <script src="lib/angular/angular.min.js"></script>
 <!--<script src="js/jquery/jquery-1.8.3.js"></script>-->
 <script src="js/jquery/jquery-ui.min.js"></script>
 <script src="js/library/timeago.js"></script>
 <script src="lib/parse/parse-min.js"></script>
+
 <!--<script type="text/javascript" src="js/blue/js/append-footer.js"></script>-->
 <!--<script src="js/jquery/maskedinput.js"></script>-->
 

@@ -3607,11 +3607,18 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
             $scope.section.loginInProgress = true;
             $scope.section.loginInProgressMsg = CONSTANTS.LOGIN_IN_PROGRESS;
         });
-        //FB.Event.subscribe('auth.statusChange', handleStatusChange);
-              //FB.getLoginStatus(handleStatusChange);
-            //alert('FB.getLoginStatus');
-        
-        Parse.FacebookUtils.logIn("publish_actions,email", {
+     
+        var myExpDate = new Date();
+        myExpDate.setMonth( myExpDate.getMonth( ) + 2 );
+        myExpDate = myExpDate.toISOString();
+
+       var facebookAuthData = {
+          "id": session.authResponse.userId+"",
+          "access_token": session.authResponse.accessToken,
+          "expiration_date": myExpDate 
+        }
+
+        Parse.FacebookUtils.logIn(facebookAuthData,"publish_actions,email", {
             success:function (user) {
                 if (!user.existed()) {
                     alert("User signed up and logged in through Facebook!");
