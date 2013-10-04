@@ -664,7 +664,7 @@ sweetApp.config(
             "FACEBOOK":{
                 "APP_ID":"465464716837107", //Sweet Bee
 //            "APP_ID": "165573450251838", //Sweetness
-                "CHANNEL_URL":"http://localhost.local/sweet/alpha/channel.html",
+                "CHANNEL_URL":"../channel.html",
 //            "CHANNEL_URL": "http://thankyou.sweetness.io/channel.html",
 //            "CHANNEL_URL": "http://www.sweetness.io/bubble/channel.html",
                 "PERMISSIONS":"publish_actions,email",

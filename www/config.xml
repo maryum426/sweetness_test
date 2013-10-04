@@ -52,7 +52,7 @@
     
     <gap:plugin name="com.phonegap.plugins.facebookconnect">
     <param name="APP_ID" value="366407670138696"/>
-    <param name="APP_NAME" value="sweet_localhost" />
+    <param name="APP_NAME" value="sweetness_test" />
     </gap:plugin>
     
     <feature name="http://api.phonegap.com/1.0/camera"/>
