@@ -51,7 +51,11 @@
     <link rel="apple-touch-startup-image" href="images/ipad-startup-image.png"
           media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)"/>
     <link rel="shortcut icon" href="images/favicon0.ico">
+    <script src="cordova.js"></script>
 
+    <script src="cdv-plugin-fb-connect.js"></script>
+
+    <script src="facebook_js_sdk.js"></script>
     <!--&lt;!&ndash; Le HTML5 shim, for IE6-8 support of HTML5 elements &ndash;&gt;-->
     <!--&lt;!&ndash;[if lt IE 9]>-->
     <!--<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>-->
@@ -66,9 +70,9 @@
                                       try {
                                       alert('Device is ready! Make sure you set your app_id below this alert.');
                                       FB.init({ appId: '366407670138696', nativeInterface: CDV.FB, useCachedDialogs: false });
-                                      document.getElementById('data').innerHTML = "";
+                                      
                                       } catch (e) {
-                                      alert(e);
+                                      alert("Hello: "+e);
                                       }
                                       }, false);
                                       
