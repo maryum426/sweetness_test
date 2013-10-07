@@ -3508,7 +3508,20 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
             phone:null
         };
     };
+    $scope.$watch($rootScope.publicName, function () {
+        try {
+                                      alert('Device is ready! Make sure you set your app_id below this alert.');
+                                      window.fbAsyncInit = function () {
+                                      FB.init({ appId: '366407670138696', nativeInterface: CDV.FB, useCachedDialogs: false });
+                                      
+                                      //FB.getLoginStatus(function(response){
+                                      fbApiInit = true;
 
+                                      }
+                                      } catch (e) {
+                                      alert("Hello: "+e);
+                                      }
+    });
     $scope.newAuth = function () {
 
         //console.log("\n--- AuthController ---");
@@ -3601,7 +3614,10 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
 
 //    $scope.section.loginInProgress = false;
     $scope.facebookLogin = function () {
-
+        
+        if ((typeof cordova == 'undefined') && (typeof Cordova == 'undefined')) alert('Cordova variable does not exist. Check that you have included cordova.js correctly');
+            if (typeof CDV == 'undefined') alert('CDV variable does not exist. Check that you have included cdv-plugin-fb-connect.js correctly');
+            if (typeof FB == 'undefined') alert('FB variable does not exist. Check that you have included the Facebook JS SDK file.');
         /*$log.info("--Facebook Login---");
         $scope.safeApply(function () {
             $scope.section.loginInProgress = true;
@@ -3616,7 +3632,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
             alert("Initialization Error");
         }
          FB.login(function(response) {
-             alert("Fb.Login");
+             //alert("Fb.Login");
             if(response.session) {
                 // build authData object for Parse
                 var id = response.authResponse.userID;
