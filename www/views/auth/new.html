@@ -1,7 +1,7 @@
 <script src="cordova.js"></script>
 <script src="cdv-plugin-fb-connect.js"></script>
-
 <script src="facebook-js-sdk.js"></script>
+
 <div class="wrapper" ng-controller="AuthController">
     <div class="container_ROW">
         <a href="#" class="logo"><img src="images/logo.png" alt="sweet"></a>
@@ -24,6 +24,7 @@
         <div class="footer_HOLDER">
             <div class="connect-media">
                 <section ng-hide="section.loginInProgress">
+                    <div id="fb-root"></div>
                     <span class="connect-title">Connect with ...</span>
                     <ul class="social-icons">
                         <li><a class="facebook"  ng-click="facebookLogin();">facebook</a></li>

@@ -3602,14 +3602,17 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
 //    $scope.section.loginInProgress = false;
     $scope.facebookLogin = function () {
 
-        $log.info("--Facebook Login---");
+        /*$log.info("--Facebook Login---");
         $scope.safeApply(function () {
             $scope.section.loginInProgress = true;
             $scope.section.loginInProgressMsg = CONSTANTS.LOGIN_IN_PROGRESS;
-        });
-        
+        });*/
+        if (window.fbApiInit)
+        {
+            alert ("Initialization Okay");
+        }
          FB.login(function(response) {
-            if(response.status == "connected") {
+            if(response.session) {
                 // build authData object for Parse
                 var id = response.authResponse.userID;
                 var access_token = response.authResponse.accessToken;
@@ -3623,9 +3626,9 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                         "expiration_date" : expiration_date
                     
                 };
-
+                document.getElementById('data').innerHTML = JSON.stringify(response);
                 // log in with Parse
-                Parse.FacebookUtils.logIn(authData, {
+                /*Parse.FacebookUtils.logIn(authData, {
                     success: function (user) {
                 if (!user.existed()) {
                     alert("User signed up and logged in through Facebook!");
@@ -3641,7 +3644,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                  console.log("UserInfo ID -->" + user.id);
                  console.log("UserInfo FBID" + user.get("authData")["facebook"]["id"]);*/
 
-                facebookService.updateUserInfo(user, function (rUser, rUserChannel) {
+                /*facebookService.updateUserInfo(user, function (rUser, rUserChannel) {
                     $scope.safeApply(function () {
                         $scope.section.loginInProgress = false;
                         if (rUserChannel)
@@ -3666,7 +3669,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                 alert(error.message);
 //                    cb(null);
                 }
-            })
+            })*/
         }}, {scope:"email,publish_actions"});
          
         /*FB.login(
