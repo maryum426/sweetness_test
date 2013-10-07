@@ -2,7 +2,7 @@
 <script src="cdv-plugin-fb-connect.js"></script>
 <script src="facebook-js-sdk.js"></script>
 
-<div class="wrapper" ng-controller="AuthController">
+<div class="wrapper" ng-controller="AuthController" onload="facebookInit();">
     <div class="container_ROW">
         <a href="#" class="logo"><img src="images/logo.png" alt="sweet"></a>
         <section ng-hide="section.loginInProgress">
@@ -51,7 +51,21 @@
     </section>
 </div>
 <script>
-    
+    function facebookInit(){
+        alert('Device is ready! Make sure you set your app_id below this alert.');
+        try{                              
+        window.fbAsyncInit = function () {
+                                      FB.init({ appId: '366407670138696', nativeInterface: CDV.FB, useCachedDialogs: false });
+                                      
+                                      //FB.getLoginStatus(function(response){
+                                      fbApiInit = true;
+
+        };
+                                      } catch (e) {
+                                      alert("Hello: "+e);
+                                      }
+                                      
+    }
 </script>
 
 
