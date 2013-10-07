@@ -3611,7 +3611,24 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
         });
     }
 
-
+// phonegap facebook login
+    $scope.phonegapFBLogin = function() {
+        FB.init({ appId: '366407670138696', nativeInterface: CDV.FB, useCachedDialogs: false });
+        FB.login(
+            function(response) {
+                if (response.session) {
+                  document.getElementById('data').innerHTML = "Login in";
+                } 
+                else {
+                  document.getElementById('data').innerHTML = "Login in not";
+                }
+                
+                document.getElementById('data').innerHTML = JSON.stringify(response);
+                
+            }, { scope: "email" }
+       );    
+        
+    };
 //    $scope.section.loginInProgress = false;
     $scope.facebookLogin = function () {
         
