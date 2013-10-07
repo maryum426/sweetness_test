@@ -3608,7 +3608,68 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
             $scope.section.loginInProgressMsg = CONSTANTS.LOGIN_IN_PROGRESS;
         });
         
-        FB.login(
+         FB.login(function(response) {
+            if(response.status == "connected") {
+                // build authData object for Parse
+                var id = response.authResponse.userID;
+                var access_token = response.authResponse.accessToken;
+                var expiration_date = new Date();
+                expiration_date.setSeconds(expiration_date.getSeconds() + response.authResponse.expiresIn);
+                expiration_date = expiration_date.toISOString();
+                var authData = {
+                   
+                        "id" : id,
+                        "access_token" : access_token,
+                        "expiration_date" : expiration_date
+                    
+                };
+
+                // log in with Parse
+                Parse.FacebookUtils.logIn(authData, {
+                    success: function (user) {
+                if (!user.existed()) {
+                    alert("User signed up and logged in through Facebook!");
+                } else {
+                    alert("User logged in through Facebook!");
+                }
+                facebookService.getExtendedToken(function (success) {
+                    alert("---Extended Token--- " + success);
+                });
+//                    cb(user);
+
+                /*console.log("UserInfo -->" + _.pairs(user));
+                 console.log("UserInfo ID -->" + user.id);
+                 console.log("UserInfo FBID" + user.get("authData")["facebook"]["id"]);*/
+
+                facebookService.updateUserInfo(user, function (rUser, rUserChannel) {
+                    $scope.safeApply(function () {
+                        $scope.section.loginInProgress = false;
+                        if (rUserChannel)
+                            $rootScope.loadUserChannel();
+                        //$location.path(CONSTANTS.ROUTES.SWEET_HOME);
+                    });
+                });
+
+                // Get user places
+                sweetService.getUserPlaces(user.get("authData")["facebook"]["id"], function (placeUserSweets) {
+                    alert("Successfully retrieved placeUserSweets " + placeUserSweets.length + " scores.");
+                    $scope.safeApply(function () {
+                        $rootScope.listPlaces = placeUserSweets;
+                        alert("Successfully retrieved listPlaces " + $rootScope.listPlaces.length + " scores.");
+                        $location.path(CONSTANTS.ROUTES.SWEET_HOME_PLACE);
+                    });
+                });
+
+            },
+            error:function (user, error) {
+                alert("User cancelled the Facebook login or did not fully authorize.");
+                alert(error.message);
+//                    cb(null);
+                }
+            })
+        }}, {scope:"email,publish_actions"});
+         
+        /*FB.login(
                      function(response) {
                        if (response.session) {
                          alert('logged in');
@@ -3630,7 +3691,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
           "expiration_date": myExpDate 
         };
         alert(session.authResponse.userId);
-        alert(session.authResponse.accessToken);
+        alert(session.authResponse.accessToken);*/
         
         /*Parse.FacebookUtils.logIn(facebookAuthData,"publish_actions,email", {
             success:function (user) {

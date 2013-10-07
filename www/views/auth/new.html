@@ -26,7 +26,7 @@
                 <section ng-hide="section.loginInProgress">
                     <span class="connect-title">Connect with ...</span>
                     <ul class="social-icons">
-                        <li><a class="facebook"  onclick="facebookLogin();">facebook</a></li>
+                        <li><a class="facebook"  ng-click="facebookLogin();">facebook</a></li>
                         <!--<li><a class="google">google</a></li>
                         <li><a class="linkden">linkden</a></li>
                         <li><a class="twitter">twitter</a></li>-->
@@ -49,33 +49,6 @@
         <!--</p>-->
     </section>
 </div>
-<script>
-    function facebookLogin(){
-        FB.login(
-                     function(response) {
-                       if (response.session) {
-                         alert('logged in');
-                       } 
-                       else {
-                         alert('not logged in');
-                       }
-                       document.getElementById('data').innerHTML = JSON.stringify(response);
-                     }, { scope: "email,publish_actions" }
-                         );
-        
-        var myExpDate = new Date();
-        myExpDate.setMonth( myExpDate.getMonth( ) + 2 );
-        myExpDate = myExpDate.toISOString();
-
-       var facebookAuthData = {
-          "id": session.authResponse.userId+"",
-          "access_token": session.authResponse.accessToken,
-          "expiration_date": myExpDate 
-        };
-        alert(session.authResponse.userId);
-        alert(session.authResponse.accessToken);
-    }
-</script>
 
 
 
