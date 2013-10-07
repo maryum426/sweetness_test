@@ -3608,25 +3608,13 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
             $scope.section.loginInProgressMsg = CONSTANTS.LOGIN_IN_PROGRESS;
         });*/
         
-        document.addEventListener('deviceready', function() {
-                                      try {
-                                      alert('Device is ready! Make sure you set your app_id below this alert.');
-                                      window.fbAsyncInit = function () {
-                                      FB.init({ appId: '366407670138696', nativeInterface: PG.FB, useCachedDialogs: false });
-                                      
-                                      //FB.getLoginStatus(function(response){
-                                      fbApiInit = true;
-
-                                      }
-                                      } catch (e) {
-                                      alert("Hello: "+e);
-                                      }
-                                      }, false);
+       
         if (window.fbApiInit)
         {
             alert ("Initialization Okay");
         }
          FB.login(function(response) {
+             alert("Fb.Login");
             if(response.session) {
                 // build authData object for Parse
                 var id = response.authResponse.userID;
