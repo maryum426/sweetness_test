@@ -3650,7 +3650,30 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                 
                 //Parse Integration 
                 
-                Parse.FacebookUtils.logIn(authData, {
+                $scope.parseAuth(authData);
+                
+                //Parse Integration End
+                
+                
+                
+                
+                
+                } 
+                else {
+                  document.getElementById('data').innerHTML = "Login in not";
+                }
+                
+                //document.getElementById('data').innerHTML = JSON.stringify(response);
+                
+            }, { scope: "email,publish_actions" }
+       );    
+        
+    };
+    
+    //Parse Initialization
+     $scope.parseAuth = function(user){
+         alert("Fucntion: parseAuth()");
+         Parse.FacebookUtils.logIn(user, {
                     success: function (user) {
                 if (!user.existed()) {
                     alert("User signed up and logged in through Facebook!");
@@ -3691,25 +3714,8 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                 alert(error.message);
 //                    cb(null);
                 }
-            })
-                
-                //Parse Integration End
-                
-                
-                
-                
-                
-                } 
-                else {
-                  document.getElementById('data').innerHTML = "Login in not";
-                }
-                
-                document.getElementById('data').innerHTML = JSON.stringify(response);
-                
-            }, { scope: "email,publish_actions" }
-       );    
-        
-    };
+            });
+     }
 //    $scope.section.loginInProgress = false;
     $scope.facebookLogin = function () {
         
