@@ -3512,7 +3512,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
         try {
                                       alert('Device is ready! Make sure you set your app_id below this alert.');
                                       //window.fbAsyncInit = function () {
-                                      FB.init({ appId: '366407670138696', nativeInterface: CDV.FB, useCachedDialogs: false });
+                                      FB.init({ appId: '366407670138696', nativeInterface: PG.FB, useCachedDialogs: false });
                                       
                                       //FB.getLoginStatus(function(response){
                                       //fbApiInit = true;
