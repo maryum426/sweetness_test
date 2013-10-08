@@ -3640,7 +3640,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
             if (typeof FB == 'undefined') alert('FB variable does not exist. Check that you have included the Facebook JS SDK file.');
         /*$log.info("--Facebook Login---");
         $scope.safeApply(function () {
-            $scope.section.loginInProgress = true;
+            $scope.section.loginInProgress = true; 
             $scope.section.loginInProgressMsg = CONSTANTS.LOGIN_IN_PROGRESS;
         });*/
         
