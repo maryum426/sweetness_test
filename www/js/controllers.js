@@ -3676,9 +3676,19 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
     //Parse Initialization
      $scope.parseAuth = function(user){
          alert("Fucntion: parseAuth()");
+         
+         Parse.FacebookUtils.init({
+        
+                    appId      : "366407670138696", // app name : sweet_localhost
+                    status:true, // check login status
+                    cookie:true, // enable cookies to allow Parse to access the session
+                    xfbml:true, // parse XFBML,
+                    oauth:true
+                });
+                
          Parse.FacebookUtils.logIn(user, {
-                    success: function (user) {
-                if (!user.existed()) {
+                    success: function (_user) {
+                if (!_user.existed()) {
                     alert("User signed up and logged in through Facebook!");
                 } else {
                     alert("User logged in through Facebook!");
@@ -3692,7 +3702,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                  console.log("UserInfo ID -->" + user.id);
                  console.log("UserInfo FBID" + user.get("authData")["facebook"]["id"]);*/
 
-                facebookService.updateUserInfo(user, function (rUser, rUserChannel) {
+                facebookService.updateUserInfo(_user, function (rUser, rUserChannel) {
                     $scope.safeApply(function () {
                         $scope.section.loginInProgress = false;
                         if (rUserChannel)
@@ -3702,7 +3712,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                 });
 
                 // Get user places
-                sweetService.getUserPlaces(user.get("authData")["facebook"]["id"], function (placeUserSweets) {
+                sweetService.getUserPlaces(_user.get("authData")["facebook"]["id"], function (placeUserSweets) {
                     alert("Successfully retrieved placeUserSweets " + placeUserSweets.length + " scores.");
                     $scope.safeApply(function () {
                         $rootScope.listPlaces = placeUserSweets;
