@@ -20,7 +20,7 @@
         <div class="footer_HOLDER">
             <div class="connect-media">
                 <section ng-hide="section.loginInProgress">
-                    <div id="fb-root"></div>
+                    
                     <span class="connect-title">Connect with ...</span>
                     <ul class="social-icons">
                         <li><a class="facebook"  ng-click="phonegapFBLogin();">facebook</a></li>
@@ -51,9 +51,9 @@
             document.addEventListener('deviceready', function() {
                                       try {
                                       alert('Device is ready! Make sure you set your app_id below this alert.');
-                                        window.fbAsyncInit = function(){                          
+                                        //window.fbAsyncInit = function(){                          
                                         FB.init({ appId: '366407670138696', nativeInterface: CDV.FB, useCachedDialogs: false });
-                                        };
+                                        //};
                                       
                                       //document.getElementById('data').innerHTML = "";
                                       } 
