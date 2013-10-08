@@ -3512,7 +3512,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
         try {
                                       alert('Device is ready! Make sure you set your app_id below this alert.');
                                       //window.fbAsyncInit = function () {
-                                      FB.init({ appId: '366407670138696', nativeInterface: PG.FB, useCachedDialogs: false });
+                                      FB.init({ appId: '366407670138696', nativeInterface: CDV.FB, useCachedDialogs: false });
                                       
                                       //FB.getLoginStatus(function(response){
                                       //fbApiInit = true;
@@ -3521,6 +3521,15 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                                       } catch (e) {
                                       alert("Hello: "+e);
                                       }
+                                      
+        /*Parse.FacebookUtils.init({
+        
+        appId      : "366407670138696", // app name : sweet_localhost
+        status:true, // check login status
+        cookie:true, // enable cookies to allow Parse to access the session
+        xfbml:true, // parse XFBML,
+        oauth:true
+    });*/
     });
     $scope.newAuth = function () {
 
@@ -3631,38 +3640,32 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                                    alert('auth.statusChange event');
                                    });
         
-        
+        var authData;
         FB.login(
             function(response) {
                 if (response.session) {
-                   var id = response.authResponse.userID;
-                var access_token = response.authResponse.accessToken;
-                var expiration_date = new Date();
-                expiration_date.setSeconds(expiration_date.getSeconds() + response.authResponse.expiresIn);
-                expiration_date = expiration_date.toISOString();
-                var authData = {
-                   
-                        "id" : id,
-                        "access_token" : access_token,
-                        "expiration_date" : expiration_date
-                    
-                };
-                
+                    var id = response.authResponse.userID;
+                    var access_token = response.authResponse.accessToken;
+                    var expiration_date = new Date();
+                    expiration_date.setSeconds(expiration_date.getSeconds() + response.authResponse.expiresIn);
+                    expiration_date = expiration_date.toISOString();
+                    authData = {
+
+                            "id" : id,
+                            "access_token" : access_token,
+                            "expiration_date" : expiration_date
+
+                    };
+
+                } 
+                else {
+                  document.getElementById('data').innerHTML = "Login in not";
+                }
                 //Parse Integration 
                 
                 $scope.parseAuth(authData);
                 
                 //Parse Integration End
-                
-                
-                
-                
-                
-                } 
-                else {
-                  document.getElementById('data').innerHTML = "Login in not";
-                }
-                
                 //document.getElementById('data').innerHTML = JSON.stringify(response);
                 
             }, { scope: "email,publish_actions" }
