@@ -719,7 +719,7 @@ setTimeout(function () {
      oauth      : true
      });*/
    
-    Parse.FacebookUtils.init({
+    /*Parse.FacebookUtils.init({
         //              TODO: What if user revoke Sweet app permissions
         //appId      : "548541351864725", // thankyou.sweetness.io
         //appId      : "451283941617165",
@@ -732,7 +732,7 @@ setTimeout(function () {
         xfbml:true, // parse XFBML,
         oauth:true
     });
-}, 1000);
+}, 1000);*/
 //window.fbAsyncInit = function() {
 //    FB.init({
 //        appId      : '610836262276654', // App ID
