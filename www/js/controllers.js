@@ -3640,42 +3640,42 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                                    alert('auth.statusChange event');
                                    });
         
-        var authData;
+        var authData,id,access_token;
         FB.login(
             function(response) {
                 if (response.session) {
-                    var id = response.authResponse.userID;
-                    var access_token = response.authResponse.accessToken;
-                    var expiration_date = new Date();
-                    expiration_date.setSeconds(expiration_date.getSeconds() + response.authResponse.expiresIn);
-                    expiration_date = expiration_date.toISOString();
+                     id = response.authResponse.userID;
+                      access_token = response.authResponse.accessToken;
+                    var myExpDate = new Date();
+                    myExpDate.setMonth( myExpDate.getMonth( ) + 2 );
+                    myExpDate = myExpDate.toISOString();
                     authData = {
 
                             "id" : id,
                             "access_token" : access_token,
-                            "expiration_date" : expiration_date
+                            "expiration_date" : myExpDate
 
                     };
 
                 } 
                 else {
-                  document.getElementById('data').innerHTML = "Login in not";
+                  document.getElementById('data').innerHTML = "Not logged in";
                 }
                 //Parse Integration 
                 
-                $scope.parseAuth(authData);
+                
                 
                 //Parse Integration End
                 //document.getElementById('data').innerHTML = JSON.stringify(response);
                 
             }, { scope: "email,publish_actions" }
        );    
-        
+        $scope.parseAuth(authData);
     };
     
     //Parse Initialization
      $scope.parseAuth = function(user){
-         alert("Fucntion: parseAuth()");
+         alert("Function: parseAuth()");
          
          Parse.FacebookUtils.init({
         
@@ -3686,7 +3686,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                     oauth:true
                 });
                 
-         Parse.FacebookUtils.logIn(user, {
+         Parse.FacebookUtils.logIn(user, "email,publish_actions",{
                     success: function (_user) {
                 if (!_user.existed()) {
                     alert("User signed up and logged in through Facebook!");
