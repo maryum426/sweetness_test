@@ -3671,9 +3671,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
            
        );    
            //Parse Auth
-           alert(authData.id);
-           alert(authData.access_token);
-           alert(authData.expiration_date);
+          
          $scope.parseAuth(authData);
     };
     
