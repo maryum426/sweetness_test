@@ -3669,7 +3669,61 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
             }, { scope: "email,publish_actions" }
            
        );    
-         $scope.parseAuth(authData);
+           //ParseAuth
+           
+           Parse.FacebookUtils.init({
+        
+                    appId      : "366407670138696", // app name : sweet_localhost
+                    status:true, // check login status
+                    cookie:true, // enable cookies to allow Parse to access the session
+                    xfbml:true, // parse XFBML,
+                    oauth:true
+                });
+                
+         Parse.FacebookUtils.logIn(user, "email,publish_actions",{
+                    success: function (user) {
+                        alert("My User:" + user);
+                if (!user.existed()) {
+                    alert("User signed up and logged in through Facebook!");
+                } else {
+                    alert("User logged in through Facebook!");
+                }
+                facebookService.getExtendedToken(function (success) {
+                    alert("---Extended Token--- " + success);
+                });
+//                    cb(user);
+
+                /*console.log("UserInfo -->" + _.pairs(user));
+                 console.log("UserInfo ID -->" + user.id);
+                 console.log("UserInfo FBID" + user.get("authData")["facebook"]["id"]);*/
+
+                facebookService.updateUserInfo(user, function (rUser, rUserChannel) {
+                    $scope.safeApply(function () {
+                        $scope.section.loginInProgress = false;
+                        if (rUserChannel)
+                            $rootScope.loadUserChannel();
+                        //$location.path(CONSTANTS.ROUTES.SWEET_HOME);
+                    });
+                });
+
+                // Get user places
+                sweetService.getUserPlaces(user.get("authData")["facebook"]["id"], function (placeUserSweets) {
+                    alert("Successfully retrieved placeUserSweets " + placeUserSweets.length + " scores.");
+                    $scope.safeApply(function () {
+                        $rootScope.listPlaces = placeUserSweets;
+                        alert("Successfully retrieved listPlaces " + $rootScope.listPlaces.length + " scores.");
+                        $location.path(CONSTANTS.ROUTES.SWEET_HOME_PLACE);
+                    });
+                });
+
+            },
+            error:function (user, error) {
+                alert("User cancelled the Facebook login or did not fully authorize.");
+                alert(error.message);
+//                    cb(null);
+                }
+            });
+         //$scope.parseAuth(authData);
     };
     
     //Parse Initialization
