@@ -3650,11 +3650,9 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                     myExpDate.setMonth( myExpDate.getMonth( ) + 2 );
                     myExpDate = myExpDate.toISOString();
                     authData = {
-
                             "id" : id,
                             "access_token" : access_token,
                             "expiration_date" : myExpDate
-
                     };
 
                 } 
@@ -3676,7 +3674,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
     //Parse Initialization
      $scope.parseAuth = function(user){
          alert("Function: parseAuth()");
-         
+          
          Parse.FacebookUtils.init({
         
                     appId      : "366407670138696", // app name : sweet_localhost
@@ -3687,8 +3685,8 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                 });
                 
          Parse.FacebookUtils.logIn(user, "email,publish_actions",{
-                    success: function (_user) {
-                if (!_user.existed()) {
+                    success: function (user) {
+                if (!user.existed()) {
                     alert("User signed up and logged in through Facebook!");
                 } else {
                     alert("User logged in through Facebook!");
@@ -3702,7 +3700,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                  console.log("UserInfo ID -->" + user.id);
                  console.log("UserInfo FBID" + user.get("authData")["facebook"]["id"]);*/
 
-                facebookService.updateUserInfo(_user, function (rUser, rUserChannel) {
+                facebookService.updateUserInfo(user, function (rUser, rUserChannel) {
                     $scope.safeApply(function () {
                         $scope.section.loginInProgress = false;
                         if (rUserChannel)
@@ -3712,7 +3710,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                 });
 
                 // Get user places
-                sweetService.getUserPlaces(_user.get("authData")["facebook"]["id"], function (placeUserSweets) {
+                sweetService.getUserPlaces(user.get("authData")["facebook"]["id"], function (placeUserSweets) {
                     alert("Successfully retrieved placeUserSweets " + placeUserSweets.length + " scores.");
                     $scope.safeApply(function () {
                         $rootScope.listPlaces = placeUserSweets;
