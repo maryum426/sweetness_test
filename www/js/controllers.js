@@ -3691,8 +3691,9 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                 });
                 
          Parse.FacebookUtils.logIn(user, "email,publish_actions",{
-                    success: function (_user) {
-                        alert("My User:" + _user);
+             
+                 success: function (_user) {
+                        
                 if (!_user.existed()) {
                     alert("User signed up and logged in through Facebook!");
                 } else {
@@ -3725,7 +3726,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                         $location.path(CONSTANTS.ROUTES.SWEET_HOME_PLACE);
                     });
                 });*/
-
+                alert("My User:" + _user);       
             },
             error:function (_user, error) {
                 alert("User cancelled the Facebook login or did not fully authorize.");
