@@ -3687,7 +3687,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                 
          Parse.FacebookUtils.logIn(user, "email,publish_actions",{
                     success: function (user) {
-                        alert("Done ;)");
+                        alert("My User:" + user);
                 if (!user.existed()) {
                     alert("User signed up and logged in through Facebook!");
                 } else {
@@ -3728,7 +3728,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
 //                    cb(null);
                 }
             });
-     }
+     };
 //    $scope.section.loginInProgress = false;
     $scope.facebookLogin = function () {
         
