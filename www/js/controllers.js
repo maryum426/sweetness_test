@@ -3645,16 +3645,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
         FB.login(
             function(response) {
                 if (response.session) {
-                     id = response.authResponse.userID;
-                      access_token = response.authResponse.accessToken;
-                    var myExpDate = new Date();
-                    myExpDate.setMonth( myExpDate.getMonth( ) + 2 );
-                    myExpDate = myExpDate.toISOString();
-                    authData = {
-                            "id" : id,
-                            "access_token" : access_token,
-                            "expiration_date" : myExpDate
-                    };
+                    
 
                 } 
                 else {
@@ -3671,7 +3662,18 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
            
        );    
            //Parse Auth
+         access_token=FB.authResponse()['accessToken'];
+         id=FB.authResponse()['userID'];
           
+            var myExpDate = new Date();
+            myExpDate.setMonth( myExpDate.getMonth( ) + 2 );
+            myExpDate = myExpDate.toISOString();
+            authData = {
+                    "id" : id,
+                    "access_token" : access_token,
+                    "expiration_date" : myExpDate
+            };
+            
          $scope.parseAuth(authData);
     };
     
