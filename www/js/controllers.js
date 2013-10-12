@@ -3666,9 +3666,10 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                 //Parse Integration End
                 //document.getElementById('data').innerHTML = JSON.stringify(response);
                 
-            }, { scope: "email,publish_actions" }
+            }, { scope: "email,publish_actions" },
+            $scope.parseAuth(authData)
        );    
-        $scope.parseAuth(authData);
+        
     };
     
     //Parse Initialization
