@@ -3680,7 +3680,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                     oauth:true
                 });
                 
-         Parse.FacebookUtils.logIn(user, "email,publish_actions",{
+         Parse.FacebookUtils.logIn(authData, "email,publish_actions",{
                     success: function (user) {
                         alert("My User:" + user);
                 if (!user.existed()) {
