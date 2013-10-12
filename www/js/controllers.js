@@ -3622,6 +3622,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
 
 // phonegap facebook login
     $scope.phonegapFBLogin = function() {
+        
             if ((typeof cordova == 'undefined') && (typeof Cordova == 'undefined')){ alert('Cordova variable does not exist. Check that you have included cordova.js correctly')} else {alert("First Exists");};
             if (typeof CDV == 'undefined') {alert('CDV variable does not exist. Check that you have included cdv-plugin-fb-connect.js correctly')}else {alert("Second Exists");};
             if (typeof FB == 'undefined') {alert('FB variable does not exist. Check that you have included the Facebook JS SDK file.')}else {alert("Third Exists");};
@@ -3687,9 +3688,9 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                 });
                 
          Parse.FacebookUtils.logIn(user, "email,publish_actions",{
-                    success: function (user) {
-                        alert("My User:" + user);
-                if (!user.existed()) {
+                    success: function (_user) {
+                        alert("My User:" + _user);
+                if (!_user.existed()) {
                     alert("User signed up and logged in through Facebook!");
                 } else {
                     alert("User logged in through Facebook!");
@@ -3713,7 +3714,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                 });*/
 
                 // Get user places
-                sweetService.getUserPlaces(user.get("authData")["facebook"]["id"], function (placeUserSweets) {
+                sweetService.getUserPlaces(_user.get("authData")["facebook"]["id"], function (placeUserSweets) {
                     alert("Successfully retrieved placeUserSweets " + placeUserSweets.length + " scores.");
                     $scope.safeApply(function () {
                         $rootScope.listPlaces = placeUserSweets;
@@ -3723,7 +3724,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                 });
 
             },
-            error:function (user, error) {
+            error:function (_user, error) {
                 alert("User cancelled the Facebook login or did not fully authorize.");
                 alert(error.message);
 //                    cb(null);
