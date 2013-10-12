@@ -3704,24 +3704,24 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                  console.log("UserInfo ID -->" + user.id);
                  console.log("UserInfo FBID" + user.get("authData")["facebook"]["id"]);*/
 
-                /*facebookService.updateUserInfo(user, function (rUser, rUserChannel) {
+                facebookService.updateUserInfo(user, function (rUser, rUserChannel) {
                     $scope.safeApply(function () {
                         $scope.section.loginInProgress = false;
                         if (rUserChannel)
                             $rootScope.loadUserChannel();
                         //$location.path(CONSTANTS.ROUTES.SWEET_HOME);
                     });
-                });*/
+                });
 
                 // Get user places
-                sweetService.getUserPlaces(_user.get("authData")["facebook"]["id"], function (placeUserSweets) {
+                /*sweetService.getUserPlaces(_user.get("authData")["facebook"]["id"], function (placeUserSweets) {
                     alert("Successfully retrieved placeUserSweets " + placeUserSweets.length + " scores.");
                     $scope.safeApply(function () {
                         $rootScope.listPlaces = placeUserSweets;
                         alert("Successfully retrieved listPlaces " + $rootScope.listPlaces.length + " scores.");
                         $location.path(CONSTANTS.ROUTES.SWEET_HOME_PLACE);
                     });
-                });
+                });*/
 
             },
             error:function (_user, error) {
