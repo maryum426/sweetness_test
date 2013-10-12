@@ -3666,10 +3666,10 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                 //Parse Integration End
                 //document.getElementById('data').innerHTML = JSON.stringify(response);
                 
-            }, { scope: "email,publish_actions" },
-            $scope.parseAuth(authData)
+            }, { scope: "email,publish_actions" }
+           
        );    
-        
+         $scope.parseAuth(authData);
     };
     
     //Parse Initialization
@@ -3687,6 +3687,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                 
          Parse.FacebookUtils.logIn(user, "email,publish_actions",{
                     success: function (user) {
+                        alert("Done ;)");
                 if (!user.existed()) {
                     alert("User signed up and logged in through Facebook!");
                 } else {
