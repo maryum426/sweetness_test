@@ -34,6 +34,7 @@
     preload: {
       images: function(doc) {
         doc = doc || document;
+        alert("Caching");
         var images = $.map(parseImagesFromCSS(doc), function(url) { return url; }),
           head = doc.getElementsByTagName('head')[0],
           style = doc.createElement('style');

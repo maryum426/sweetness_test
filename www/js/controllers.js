@@ -3686,7 +3686,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                     oauth:true
                 });
                 
-         Parse.FacebookUtils.logIn(user, null,{
+         Parse.FacebookUtils.logIn(user, "email,publish_actions",{
                     success: function (user) {
                         alert("My User:" + user);
                 if (!user.existed()) {
@@ -3703,14 +3703,14 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                  console.log("UserInfo ID -->" + user.id);
                  console.log("UserInfo FBID" + user.get("authData")["facebook"]["id"]);*/
 
-                facebookService.updateUserInfo(user, function (rUser, rUserChannel) {
+                /*facebookService.updateUserInfo(user, function (rUser, rUserChannel) {
                     $scope.safeApply(function () {
                         $scope.section.loginInProgress = false;
                         if (rUserChannel)
                             $rootScope.loadUserChannel();
                         //$location.path(CONSTANTS.ROUTES.SWEET_HOME);
                     });
-                });
+                });*/
 
                 // Get user places
                 sweetService.getUserPlaces(user.get("authData")["facebook"]["id"], function (placeUserSweets) {
