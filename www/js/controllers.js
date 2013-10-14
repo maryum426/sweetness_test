@@ -2218,7 +2218,38 @@ function AppController($window, UpdateService, $http, $log, $scope, $route, $rou
                        facebookService, authService, sweetService, CONSTANTS, $rootScope, interactionService, localStorageService, utilService) {
 
     $rootScope.publicName = {};
+    
+    $scope.$watch($rootScope.publicName, function () {
+        try {
+                                      alert('Device is ready! Make sure you set your app_id below this alert.');
+                                      //window.fbAsyncInit = function () {
+                                      FB.init({ appId: '366407670138696', nativeInterface: CDV.FB, useCachedDialogs: false });
+                                      
+                                      //FB.getLoginStatus(function(response){
+                                      //fbApiInit = true;
 
+                                      //}
+                                      } catch (e) {
+                                      alert("Hello: "+e);
+                                      }
+        var startTest = function() {
+                    // see console output for debug info
+                    ImgCache.options.debug = true;
+                    ImgCache.options.usePersistentCache = true;
+
+                    ImgCache.init();
+		};
+        /*Parse.FacebookUtils.init({
+        
+        appId      : "366407670138696", // app name : sweet_localhost
+        status:true, // check login status
+        cookie:true, // enable cookies to allow Parse to access the session
+        xfbml:true, // parse XFBML,
+        oauth:true
+    });*/
+       document.addEventListener('deviceready', startTest, false); 
+    });
+    
     $scope.safeApply = function (fn) {
         var phase = this.$root.$$phase;
         if (phase == '$apply' || phase == '$digest') {
@@ -3509,7 +3540,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
         };
     };
     $scope.$watch($rootScope.publicName, function () {
-        try {
+       /* try {
                                       alert('Device is ready! Make sure you set your app_id below this alert.');
                                       //window.fbAsyncInit = function () {
                                       FB.init({ appId: '366407670138696', nativeInterface: CDV.FB, useCachedDialogs: false });
@@ -3521,7 +3552,13 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                                       } catch (e) {
                                       alert("Hello: "+e);
                                       }
-                                      
+        var startTest = function() {
+                    // see console output for debug info
+                    ImgCache.options.debug = true;
+                    ImgCache.options.usePersistentCache = true;
+
+                    ImgCache.init();
+		};
         /*Parse.FacebookUtils.init({
         
         appId      : "366407670138696", // app name : sweet_localhost
@@ -3530,6 +3567,10 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
         xfbml:true, // parse XFBML,
         oauth:true
     });*/
+        $('img').each(function() {
+				ImgCache.cacheFile($(this).attr('src'));
+			});
+       //document.addEventListener('deviceready', startTest, false); 
     });
     $scope.newAuth = function () {
 
@@ -3655,6 +3696,9 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                             "access_token" : access_token,
                             "expiration_date" : myExpDate
                     };
+                    alert("Response Object:");
+                    alert(response.authResponse.userID);
+                    alert(response.authResponse.accessToken);
 
                 } 
                 else {
@@ -3665,7 +3709,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                 
                 
                 //Parse Integration End
-                //document.getElementById('data').innerHTML = JSON.stringify(response);
+                document.getElementById('data').innerHTML = JSON.stringify(response);
                 
             }, { scope: "email,publish_actions" }
            
