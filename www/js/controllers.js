@@ -2220,18 +2220,7 @@ function AppController($window, UpdateService, $http, $log, $scope, $route, $rou
     $rootScope.publicName = {};
     
     $scope.$watch($rootScope.publicName, function () {
-        try {
-                                      alert('Device is ready! Make sure you set your app_id below this alert.');
-                                      //window.fbAsyncInit = function () {
-                                      FB.init({ appId: '366407670138696', nativeInterface: CDV.FB, useCachedDialogs: false });
-                                      
-                                      //FB.getLoginStatus(function(response){
-                                      //fbApiInit = true;
-
-                                      //}
-                                      } catch (e) {
-                                      alert("Hello: "+e);
-                                      }
+        
         var startTest = function() {
                     // see console output for debug info
                     ImgCache.options.debug = true;
@@ -3540,7 +3529,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
         };
     };
     $scope.$watch($rootScope.publicName, function () {
-       /* try {
+        /*try {
                                       alert('Device is ready! Make sure you set your app_id below this alert.');
                                       //window.fbAsyncInit = function () {
                                       FB.init({ appId: '366407670138696', nativeInterface: CDV.FB, useCachedDialogs: false });
@@ -3552,13 +3541,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                                       } catch (e) {
                                       alert("Hello: "+e);
                                       }
-        var startTest = function() {
-                    // see console output for debug info
-                    ImgCache.options.debug = true;
-                    ImgCache.options.usePersistentCache = true;
-
-                    ImgCache.init();
-		};
+       
         /*Parse.FacebookUtils.init({
         
         appId      : "366407670138696", // app name : sweet_localhost
@@ -3567,9 +3550,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
         xfbml:true, // parse XFBML,
         oauth:true
     });*/
-        $('img').each(function() {
-				ImgCache.cacheFile($(this).attr('src'));
-			});
+       
        //document.addEventListener('deviceready', startTest, false); 
     });
     $scope.newAuth = function () {
@@ -3670,7 +3651,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
             //window.fbAsyncInit = function() {
                 //FB.init({ appId: '366407670138696', nativeInterface: CDV.FB, useCachedDialogs: false });
             //}
-                FB.Event.subscribe('auth.login', function(response) {
+                /*FB.Event.subscribe('auth.login', function(response) {
                                    alert('auth.login event');
                                    });
 
@@ -3680,7 +3661,20 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
 
                 FB.Event.subscribe('auth.statusChange', function(response) {
                                    alert('auth.statusChange event');
-                                   });
+                                   });*/
+        
+        try {
+                                      alert('Device is ready! Make sure you set your app_id below this alert.');
+                                      //window.fbAsyncInit = function () {
+                                      FB.init({ appId: '366407670138696', nativeInterface: CDV.FB, useCachedDialogs: false });
+                                      
+                                      //FB.getLoginStatus(function(response){
+                                      //fbApiInit = true;
+
+                                      //}
+                                      } catch (e) {
+                                      alert("Hello: "+e);
+                                      }
         
         var authData,id,access_token;
         FB.login(
@@ -3696,9 +3690,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                             "access_token" : access_token,
                             "expiration_date" : myExpDate
                     };
-                    alert("Response Object:");
-                    alert(response.authResponse.userID);
-                    alert(response.authResponse.accessToken);
+                    
 
                 } 
                 else {
@@ -3706,7 +3698,9 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                 }
                 //Parse Integration 
                 
-                
+                alert("Response Object:");
+                    alert(authData.id);
+                    alert(authData.access_token);
                 
                 //Parse Integration End
                 document.getElementById('data').innerHTML = JSON.stringify(response);
@@ -3722,7 +3716,8 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
     //Parse Initialization
      $scope.parseAuth = function(user){
          alert("Function: parseAuth()");
-          
+         alert(user.id);
+                    alert(user.access_token);
          Parse.FacebookUtils.init({
         
                     appId      : "366407670138696", // app name : sweet_localhost
