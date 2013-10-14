@@ -3682,9 +3682,9 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
     
     //Parse Initialization
      $scope.parseAuth = function(){
-         alert("Function: parseAuth()");
-         alert ("UserID:" + user_data.id);
-         alert ("AcessToken:" + user_data.access_token);
+         alert("Function: parseAuth() ");
+         alert ("UserID: " + user_data.id);
+         alert ("AcessToken: " + user_data.access_token);
          
          Parse.FacebookUtils.init({
         
@@ -3695,7 +3695,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                     oauth:true
                 });
                 
-         Parse.FacebookUtils.logIn(user_data, "email",{
+         Parse.FacebookUtils.logIn(user_data, "email,publish_actions",{
              
                  success: function (_user) {
                         
