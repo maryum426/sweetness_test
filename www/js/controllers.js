@@ -3624,6 +3624,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
         });
     }
 
+   var user_data= "";
 // phonegap facebook login
     $scope.phonegapFBLogin = function() {
         
@@ -3660,7 +3661,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                             "access_token" : access_token,
                             "expiration_date" : myExpDate
                     };
-                    
+                    user_data = authData;
 
                 } 
                 else {
@@ -3676,14 +3677,14 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
        );    
            //Parse Auth
          //var data = FB.authResponse();
-         $scope.parseAuth(authData);
+         $scope.parseAuth();
     };
     
     //Parse Initialization
-     $scope.parseAuth = function(user_data){
+     $scope.parseAuth = function(){
          alert("Function: parseAuth()");
-         alert("Response Object:");
-         alert(user_data);
+         alert ("UserID:" + user_data.id);
+         alert ("AcessToken:" + user_data.access_Token);
          
          Parse.FacebookUtils.init({
         
