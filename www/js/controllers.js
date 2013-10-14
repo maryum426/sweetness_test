@@ -3529,7 +3529,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
         };
     };
     $scope.$watch($rootScope.publicName, function () {
-        /*try {
+        try {
                                       alert('Device is ready! Make sure you set your app_id below this alert.');
                                       //window.fbAsyncInit = function () {
                                       FB.init({ appId: '366407670138696', nativeInterface: CDV.FB, useCachedDialogs: false });
@@ -3663,19 +3663,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                                    alert('auth.statusChange event');
                                    });*/
         
-        try {
-                                      alert('Device is ready! Make sure you set your app_id below this alert.');
-                                      //window.fbAsyncInit = function () {
-                                      FB.init({ appId: '366407670138696', nativeInterface: CDV.FB, useCachedDialogs: false });
-                                      
-                                      //FB.getLoginStatus(function(response){
-                                      //fbApiInit = true;
-
-                                      //}
-                                      } catch (e) {
-                                      alert("Hello: "+e);
-                                      }
-        
+       
         var authData,id,access_token;
         FB.login(
             function(response) {
