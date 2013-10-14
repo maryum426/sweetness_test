@@ -3684,7 +3684,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
      $scope.parseAuth = function(){
          alert("Function: parseAuth()");
          alert ("UserID:" + user_data.id);
-         alert ("AcessToken:" + user_data.access_Token);
+         alert ("AcessToken:" + user_data.access_token);
          
          Parse.FacebookUtils.init({
         
@@ -3723,15 +3723,15 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                 });
 
                 // Get user places
-                /*sweetService.getUserPlaces(_user.get("authData")["facebook"]["id"], function (placeUserSweets) {
+                sweetService.getUserPlaces(_user.get("authData")["facebook"]["id"], function (placeUserSweets) {
                     alert("Successfully retrieved placeUserSweets " + placeUserSweets.length + " scores.");
                     $scope.safeApply(function () {
                         $rootScope.listPlaces = placeUserSweets;
                         alert("Successfully retrieved listPlaces " + $rootScope.listPlaces.length + " scores.");
                         $location.path(CONSTANTS.ROUTES.SWEET_HOME_PLACE);
                     });
-                });*/
-                alert("My User:" + _user);       
+                });
+                   
             },
             error:function (_user, error) {
                 alert("User cancelled the Facebook login or did not fully authorize.");
