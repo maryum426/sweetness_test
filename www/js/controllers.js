@@ -3513,13 +3513,13 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
     $scope.$watch($rootScope.publicName, function () {
         try {
                                       alert('Device is ready! Make sure you set your app_id below this alert.');
-                                      //window.fbAsyncInit = function () {
+                                      window.fbAsyncInit = function () {
                                       FB.init({ appId: '366407670138696', nativeInterface: CDV.FB, useCachedDialogs: false });
                                       
                                       //FB.getLoginStatus(function(response){
                                       //fbApiInit = true;
 
-                                      //}
+                                      }
                                       } catch (e) {
                                       alert("Hello: "+e);
                                       }
@@ -3533,7 +3533,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
         oauth:true
     });*/
        
-       //document.addEventListener('deviceready', startTest, false); 
+      
     });
     $scope.newAuth = function () {
 
@@ -3668,12 +3668,8 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                 }
                 //Parse Integration 
                 
-                alert("Response Object:");
-                    alert(authData.id);
-                    alert(authData.access_token);
-                
                 //Parse Integration End
-                document.getElementById('data').innerHTML = JSON.stringify(response);
+                //document.getElementById('data').innerHTML = JSON.stringify(response);
                 
             }, { scope: "email,publish_actions" }
            
@@ -3684,10 +3680,11 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
     };
     
     //Parse Initialization
-     $scope.parseAuth = function(user){
+     $scope.parseAuth = function(authData){
          alert("Function: parseAuth()");
-         alert(user.id);
-                    alert(user.access_token);
+         alert("Response Object:");
+         alert(authData.id);
+         alert(authData.access_token);
          Parse.FacebookUtils.init({
         
                     appId      : "366407670138696", // app name : sweet_localhost
@@ -3697,7 +3694,7 @@ function AuthController($log, $scope, authService, $location, CONSTANTS, faceboo
                     oauth:true
                 });
                 
-         Parse.FacebookUtils.logIn(user, "email,publish_actions",{
+         Parse.FacebookUtils.logIn(authData, "email,publish_actions",{
              
                  success: function (_user) {
                         
