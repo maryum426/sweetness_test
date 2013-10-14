@@ -2219,25 +2219,7 @@ function AppController($window, UpdateService, $http, $log, $scope, $route, $rou
 
     $rootScope.publicName = {};
     
-    $scope.$watch($rootScope.publicName, function () {
-        
-        var startTest = function() {
-                    // see console output for debug info
-                    ImgCache.options.debug = true;
-                    ImgCache.options.usePersistentCache = true;
-
-                    ImgCache.init();
-		};
-        /*Parse.FacebookUtils.init({
-        
-        appId      : "366407670138696", // app name : sweet_localhost
-        status:true, // check login status
-        cookie:true, // enable cookies to allow Parse to access the session
-        xfbml:true, // parse XFBML,
-        oauth:true
-    });*/
-       document.addEventListener('deviceready', startTest, false); 
-    });
+    
     
     $scope.safeApply = function (fn) {
         var phase = this.$root.$$phase;
